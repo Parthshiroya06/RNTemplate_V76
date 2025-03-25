@@ -32,8 +32,8 @@ const StackNavigator = () => {
     <NavigationContainer
       theme={isThemeMode === 'Dark' ? CombinedDarkTheme : CombinedLightTheme}>
       <Stack.Navigator
-        screenOptions={{headerShown: false}}
-        initialRouteName="SplashScreen">
+        screenOptions={{headerShown: true}}
+        initialRouteName="HomeScreen">
         {RootStackNavigator()}
         {AppStackNavigator()}
       </Stack.Navigator>

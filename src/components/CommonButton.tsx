@@ -16,11 +16,7 @@ const CommonButton = (props: Props) => {
   const {buttonStyle, title, TitleStyle, onPress, isLoading = false} = props;
   return (
     <Pressable
-      style={[
-        styles.flotButton,
-        {backgroundColor: colors.DarkSlateBlue},
-        buttonStyle,
-      ]}
+      style={[styles.flotButton, {backgroundColor: '#64e1f2'}, buttonStyle]}
       onPress={onPress}>
       {isLoading ? (
         <ActivityIndicator size={25} color={Colors.offWhite} />
@@ -47,7 +43,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   textStyles: {
-    ...textStyle(18, 'Roboto'),
-    // color: Colors.offWhite,
+    ...textStyle(18, 'Roboto200'),
+    color: Colors.offWhite,
   },
 });

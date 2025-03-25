@@ -19,7 +19,7 @@ import {CommonActions, useNavigation, useTheme} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {Colors, responsiveHeight, textStyle} from '@resources';
 import {images} from '@assets';
-import {FirebaseAuth} from '@services';
+
 import {
   CommonButton,
   CommonModal,
@@ -160,7 +160,7 @@ const SettingScreen = (props: Props) => {
   const signOut = async () => {
     try {
       setIsLoad(true);
-      FirebaseAuth.googleSignout();
+
       setTimeout(() => {
         navigation.dispatch(
           CommonActions.reset({

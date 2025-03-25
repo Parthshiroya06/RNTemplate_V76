@@ -68,7 +68,7 @@ const LoginScreen = () => {
   const inputRef7 = useRef<TextInput>(null);
 
   useEffect(() => {
-    FirebaseAuth.googleConfigure();
+    // FirebaseAuth.googleConfigure();
   }, []);
 
   const checkSignInValidation = (item: number) => {
@@ -164,28 +164,7 @@ const LoginScreen = () => {
       }
     });
   };
-  //Google signin
-  const onSubmitLogin = async () => {
-    try {
-      const details = await FirebaseAuth.googleSignIn();
-      setIsLoading(true);
 
-      setTimeout(() => {
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 0,
-            routes: [{name: 'BottomTabBar'}],
-          }),
-        );
-        setIsLoading(false);
-      }, 2000);
-
-      dispatch(profileDetails(details));
-      dispatch(isUserLogin(true));
-    } catch (error) {
-      setIsLoading(false);
-    }
-  };
   //Email/password signin
   const onSubmitSignIn = async () => {
     try {
@@ -274,52 +253,8 @@ const LoginScreen = () => {
       setIsLoad(false);
     }
   };
-  //Email/password forgot password link generator
-  const onGetForgotPassword = async () => {
-    const {email} = input;
-    console.log('has value is >>>>>', isModalOpen, email.value);
-    setIsLoad(true);
-    if (email.value.trim()) {
-      await FirebaseAuth.sendPasswordLink(email.value);
-      setIsLoad(false);
-    } else {
-      setIsLoad(false);
-      setInputs(
-        {
-          ...input,
-          email: {
-            ...input.email,
-            isError: 'Please enter your email',
-          },
-        },
-        () => {
-          inputRef7.current?.focus();
-        },
-      );
-    }
-  };
 
-  //Apple login
-  // const onPressAppleLogin = async () => {
-  //   try {
-  //     console.log('check apple auth >>>>', appleAuthAndroid.isSupported);
-  //     // Apple authentication requires API 19+, so we check before showing the login button
-  //     const response = await FirebaseAuth.appleLogin();
-
-  //     console.log('Apple login response >>>>.', response);
-  //   } catch (error) {
-  //     console.error('Apple Sign-In error:', error);
-  //   }
-  // };
-
-  const yahooLogin = async () => {
-    // try {
-    //   const response = await FirebaseAuth.doLoginWithYahoo();
-    //   console.log('LoginWithYahoo login response >>>>.', response);
-    // } catch (error) {
-    //   console.error('Yahoo sign-in error:', error);
-    // }
-  };
+  const yahooLogin = async () => {};
 
   const _renderLabelText = (label: string = '') => {
     return (
@@ -605,7 +540,7 @@ const LoginScreen = () => {
                 title={localize('done')}
                 isLoading={isLoad}
                 onPress={() => {
-                  onGetForgotPassword();
+                  //onGetForgotPassword();
                 }}
               />
             </View>
@@ -672,7 +607,7 @@ const LoginScreen = () => {
               </Text>
             </View>
             <View style={{flexDirection: 'row', gap: 10}}>
-              {loginBtn('ic_google', async () => onSubmitLogin())}
+              {loginBtn('ic_google', async () => {})}
               {loginBtn('ic_email', () => {
                 setIsModalOpen('EmailLogin');
               })}

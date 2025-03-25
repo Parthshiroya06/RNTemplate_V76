@@ -7,7 +7,6 @@ import {useSelector} from 'react-redux';
 import {textStyle} from '@resources';
 import {localize} from '@languages';
 import {CommonActions, useNavigation, useTheme} from '@react-navigation/native';
-import {FirebaseAuth} from '@services';
 
 const SplashScreen = () => {
   const colors = useTheme().colors;
@@ -16,8 +15,6 @@ const SplashScreen = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    FirebaseAuth.googleConfigure();
-
     setTimeout(() => {
       navigation.dispatch(
         CommonActions.reset({
