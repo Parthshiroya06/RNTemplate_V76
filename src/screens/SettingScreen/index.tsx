@@ -178,7 +178,6 @@ const SettingScreen = (props: Props) => {
 
   const profileUpdate = () => {
     if (input.name.value != '') {
-      console.log('profileDetails is >>>>>>', profile_details);
       let details: IProfileDetails = {
         name: input.name.value,
         email: profile_details.email,
