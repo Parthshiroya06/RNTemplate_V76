@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: Colors.black,
+    fontWeight: '600',
   },
   line: {
     marginHorizontal: 10,

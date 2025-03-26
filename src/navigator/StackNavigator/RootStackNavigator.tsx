@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {HomeScreen, LoginScreen, SplashScreen} from '@screen';
+import {HomeScreen, LoginScreen, SplashScreen, ToDoScreen} from '@screen';
 import {RootStackParamList} from '@types';
 import {BottomTabNavigator} from 'navigator/BottomTabNavigator';
 
@@ -12,7 +12,12 @@ const RootStackNavigator = () => {
       <RootStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{title: 'My Todo List', headerTitleAlign: 'center'}}
+        options={{title: 'Home', headerTitleAlign: 'center'}}
+      />
+      <RootStack.Screen
+        name="ToDoScreen"
+        component={ToDoScreen}
+        options={{title: 'Add New ToDo', headerTitleAlign: 'center'}}
       />
       <RootStack.Screen name="SplashScreen" component={SplashScreen} />
 

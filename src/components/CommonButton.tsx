@@ -1,7 +1,15 @@
-import {ActivityIndicator, Pressable, StyleSheet, Text} from 'react-native';
+import {
+  ActivityIndicator,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React from 'react';
 import {Colors, responsiveHeight, responsiveWidth, textStyle} from '@resources';
 import {useTheme} from '@react-navigation/native';
+import {images} from '@assets';
 
 type Props = {
   buttonStyle?: any;
@@ -9,11 +17,20 @@ type Props = {
   title: string;
   TitleStyle?: any;
   isLoading?: boolean;
+  image_icons: any;
 };
 
 const CommonButton = (props: Props) => {
   const colors = useTheme().colors;
-  const {buttonStyle, title, TitleStyle, onPress, isLoading = false} = props;
+  const {
+    buttonStyle,
+    image_icons,
+    title,
+    TitleStyle,
+    onPress,
+    isLoading = false,
+  } = props;
+  console.log('first,', image_icons);
   return (
     <Pressable
       style={[styles.flotButton, {backgroundColor: '#64e1f2'}, buttonStyle]}
@@ -21,9 +38,13 @@ const CommonButton = (props: Props) => {
       {isLoading ? (
         <ActivityIndicator size={25} color={Colors.offWhite} />
       ) : (
-        <Text style={[styles.textStyles, {color: colors.text}, TitleStyle]}>
-          {title}
-        </Text>
+        <View style={styles.row}>
+          <Image source={images[image_icons]} style={[styles.rightIcons]} />
+
+          <Text style={[styles.textStyles, {color: colors.text}, TitleStyle]}>
+            {title}
+          </Text>
+        </View>
       )}
     </Pressable>
   );
@@ -45,5 +66,15 @@ const styles = StyleSheet.create({
   textStyles: {
     ...textStyle(18, 'Roboto200'),
     color: Colors.offWhite,
+  },
+  rightIcons: {
+    width: 40,
+    height: 25,
+    resizeMode: 'contain',
+    tintColor: Colors.green,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 });

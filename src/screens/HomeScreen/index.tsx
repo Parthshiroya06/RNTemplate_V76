@@ -8,7 +8,9 @@ import {useTheme} from '@react-navigation/native';
 import {textStyle} from '@resources';
 import {CommonButton} from '@components';
 import {localize} from '@languages';
-type Props = {};
+type Props = {
+  navigation: any;
+};
 const data = [
   {id: '1', title: 'Buy Milk'},
   {id: '2', title: 'Buy bread'},
@@ -18,7 +20,9 @@ const HomeScreen = (props: Props) => {
   const colors = useTheme().colors;
   const ass = useSelector((state: IRootReduxState) => state.userDetails);
 
-  const onSubmitSignIn = () => {};
+  const onSubmitSignIn = () => {
+    props.navigation.navigate('ToDoScreen');
+  };
   const renderItem = ({item, index}: any) => {
     return (
       <View style={styles.item}>
@@ -30,6 +34,9 @@ const HomeScreen = (props: Props) => {
   };
   return (
     <View style={[styles.container, {backgroundColor: colors.background}]}>
+      <Text style={[textStyle(20, 'Roboto400', 'center'), styles.title]}>
+        {'Add New ToDo'}
+      </Text>
       <View style={styles.line} />
       <FlatList
         data={data}
@@ -44,6 +51,7 @@ const HomeScreen = (props: Props) => {
           onSubmitSignIn();
         }}
         isLoading={false}
+        image_icons={'ic_plus'}
       />
     </View>
   );
