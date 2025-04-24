@@ -2,24 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string>663445842059-kov1i4kmd0p4mog7r1b3aqr6uvq2pgbl.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.663445842059-kov1i4kmd0p4mog7r1b3aqr6uvq2pgbl</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>663445842059-evjj6pnsjv3io4inp4rp6jle3ui9l46c.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCD2_93rN9kgNiHU5o9aojvPIdgo_9EurY</string>
+	<string>AIzaSyAnOJqcvXs8fphYrvdnFzmgCydpjKvyjWI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>663445842059</string>
+	<string>222159531843</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.rntemplate-v76</string>
+	<string>com.app.fluxa</string>
 	<key>PROJECT_ID</key>
-	<string>rntemplate-v76</string>
+	<string>fluxa-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>rntemplate-v76.firebasestorage.app</string>
+	<string>fluxa-app.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:663445842059:ios:71898aaab4359ad84a4c8e</string>
+	<string>1:222159531843:ios:d69691e5cdd4e454c6c9f6</string>
 </dict>
 </plist>

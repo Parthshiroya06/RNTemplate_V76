@@ -67,9 +67,9 @@ const LoginScreen = () => {
   const inputRef6 = useRef<TextInput>(null);
   const inputRef7 = useRef<TextInput>(null);
 
-  useEffect(() => {
-    FirebaseAuth.googleConfigure();
-  }, []);
+  // useEffect(() => {
+  //   FirebaseAuth.googleConfigure();
+  // }, []);
 
   const checkSignInValidation = (item: number) => {
     return new Promise((resolve, reject) => {

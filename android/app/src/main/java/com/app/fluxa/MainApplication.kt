@@ -1,4 +1,4 @@
-package com.rntemplate_v76
+package com.app.fluxa
 
 import android.app.Application
 import com.facebook.react.PackageList

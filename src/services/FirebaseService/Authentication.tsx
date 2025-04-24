@@ -234,7 +234,6 @@ class Authentication {
     GoogleSignin.configure({
       webClientId:
         '256304395743-qgcaf17aggnfkdd8g6pqsulbo51fvcmt.apps.googleusercontent.com',
-      scopes: ['profile', 'email'],
     });
   };
 }

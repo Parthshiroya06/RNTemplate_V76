@@ -1,4 +1,4 @@
-package com.rntemplate_v76
+package com.app.fluxa
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
