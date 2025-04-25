@@ -648,11 +648,11 @@ const LoginScreen = () => {
               styles.child,
               {height: height * 0.7, backgroundColor: colors.background},
             ]}>
-            <Image
+            {/* <Image
               source={images.ic_atharvaLogo}
               tintColor={Colors.black}
               style={[styles.logoImage]}
-            />
+            /> */}
           </View>
           <View style={[styles.subContainer, {backgroundColor: colors.card}]}>
             <View style={styles.titleViewContainer}>
@@ -672,7 +672,7 @@ const LoginScreen = () => {
               </Text>
             </View>
             <View style={{flexDirection: 'row', gap: 10}}>
-              {loginBtn('ic_google', async () => onSubmitLogin())}
+              {/* {loginBtn('ic_google', async () => onSubmitLogin())} */}
               {loginBtn('ic_email', () => {
                 setIsModalOpen('EmailLogin');
               })}

@@ -1,11 +1,13 @@
 import Facebook from './svg/ic_facebook.svg';
 export const images = {
+  //icons folders image
   ic_google: require('./icons/ic_google.png'),
   ic_email: require('./icons/ic_email.png'),
   ic_atharvaLogo: require('./icons/ic_atharvaLogo.png'),
   back_arrow: require('./icons/back_arrow.png'),
   ic_signout: require('./icons/ic_signout.png'),
-
+  coins_image: require('./icons/coins_image.png'),
+  plus: require('./icons/plus.png'),
   // tab icons screen icons
   ic_home: require('./tabIcon/ic_home.png'),
   ic_setting: require('./tabIcon/ic_setting.png'),

@@ -248,38 +248,38 @@ const SettingScreen = (props: Props) => {
             </Pressable>
           </Pressable>
         );
-      case 'Theme':
-        return (
-          <View
-            style={[
-              styles.containerTheme,
-              {backgroundColor: colors.darktertiary1},
-            ]}>
-            <View style={styles.appearanceView}>
-              <Image
-                source={
-                  isThemeMode === 'Dark'
-                    ? images.ic_darkMode
-                    : images.ic_lightMode
-                }
-                style={[styles.generalImageSty, {tintColor: colors.icons}]}
-              />
-              <Text style={[styles.themeText, {color: colors.text}]}>
-                {localize('appearance')}
-              </Text>
-            </View>
-            <SegmentedControl
-              tabs={[localize('auto'), localize('light'), localize('dark')]}
-              currentIndex={tabIndex}
-              onChange={handleTabsChange}
-              segmentedControlBackgroundColor={Colors.grey}
-              activeSegmentBackgroundColor={colors.DarkSlateBlue}
-              activeTextColor="white"
-              textColor="black"
-              paddingVertical={18}
-            />
-          </View>
-        );
+      // case 'Theme':
+      //   return (
+      //     <View
+      //       style={[
+      //         styles.containerTheme,
+      //         {backgroundColor: colors.darktertiary1},
+      //       ]}>
+      //       <View style={styles.appearanceView}>
+      //         <Image
+      //           source={
+      //             isThemeMode === 'Dark'
+      //               ? images.ic_darkMode
+      //               : images.ic_lightMode
+      //           }
+      //           style={[styles.generalImageSty, {tintColor: colors.icons}]}
+      //         />
+      //         <Text style={[styles.themeText, {color: colors.text}]}>
+      //           {localize('appearance')}
+      //         </Text>
+      //       </View>
+      //       <SegmentedControl
+      //         tabs={[localize('auto'), localize('light'), localize('dark')]}
+      //         currentIndex={tabIndex}
+      //         onChange={handleTabsChange}
+      //         segmentedControlBackgroundColor={Colors.grey}
+      //         activeSegmentBackgroundColor={colors.DarkSlateBlue}
+      //         activeTextColor="white"
+      //         textColor="black"
+      //         paddingVertical={18}
+      //       />
+      //     </View>
+      //   );
 
       case 'SignOut':
         return (

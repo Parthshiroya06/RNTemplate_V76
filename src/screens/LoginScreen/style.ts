@@ -28,20 +28,28 @@ const styles = StyleSheet.create({
     paddingVertical: responsiveHeight(2),
     elevation: 10,
     shadowColor: Colors.black,
+
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
   },
   titleViewContainer: {
     width: responsiveWidth(90),
     alignSelf: 'center',
-    marginBottom: responsiveHeight(2),
   },
   btnContainer: {
     width: responsiveWidth(12),
     height: responsiveHeight(6),
     marginTop: responsiveHeight(2),
+    marginBottom: responsiveHeight(2),
+    shadowColor: Colors.black,
+    shadowOffset: {width: 0, height: 0.5},
+    shadowOpacity: 0.25,
+    shadowRadius: 1,
+
     //backgroundColor: Colors.screenBackground,
 
     borderRadius: responsiveHeight(1),
-    overflow: 'hidden',
+    // overflow: 'hidden',
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
