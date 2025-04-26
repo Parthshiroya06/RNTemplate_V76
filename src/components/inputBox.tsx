@@ -30,6 +30,7 @@ const InputBox = (props: Props) => {
         mode="outlined"
         ref={refs}
         style={{
+          backgroundColor: colors.background,
           ...styles.inputText,
           ...textinputStyle,
         }}

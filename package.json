@@ -10,14 +10,16 @@
     "test": "jest",
     "cleanup": "rm -rf node_modules yarn.lock android/app/build ios/build ios/Pods ios/Podfile.lock",
     "project-clean": "yarn cleanup; yarn; cd android && ./gradlew clean && cd .. && cd ios && pod install && cd ..",
-    "apk-release": "cd android && ./gradlew clean && ./gradlew assembleRelease && open . && cd .."
+    "apk-release": "cd android && ./gradlew clean && ./gradlew assembleRelease && open . && cd ..",
+    "ios-16": "react-native run-ios --simulator 'iPhone 16 Pro'"
   },
   "dependencies": {
     "@apollo/client": "^3.12.0",
     "@invertase/react-native-apple-authentication": "^2.4.0",
     "@react-native-async-storage/async-storage": "^2.1.0",
-    "@react-native-firebase/app": "^21.6.1",
-    "@react-native-firebase/auth": "^21.6.1",
+    "@react-native-firebase/app": "^22.0.0",
+    "@react-native-firebase/auth": "^22.0.0",
+    "@react-native-firebase/firestore": "^22.0.0",
     "@react-native-google-signin/google-signin": "^13.1.0",
     "@react-native/gradle-plugin": "^0.77.0",
     "@react-navigation/bottom-tabs": "^7.1.3",

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {FlatList, Image, View} from 'react-native';
 import {styles} from './style';
@@ -7,6 +7,7 @@ import {IRootReduxState} from '@types';
 import {useTheme} from '@react-navigation/native';
 import {Text, Card, Button, Avatar, FAB} from 'react-native-paper';
 import {images} from '@assets';
+import firestore from '@react-native-firebase/firestore';
 type Props = {};
 const tasks = [
   {

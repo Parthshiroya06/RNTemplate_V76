@@ -2912,9 +2912,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-firebase/app@npm:^21.6.1":
-  version: 21.14.0
-  resolution: "@react-native-firebase/app@npm:21.14.0"
+"@react-native-firebase/app@npm:^22.0.0":
+  version: 22.0.0
+  resolution: "@react-native-firebase/app@npm:22.0.0"
   dependencies:
     firebase: 11.3.1
   peerDependencies:
@@ -2924,22 +2924,31 @@ __metadata:
   peerDependenciesMeta:
     expo:
       optional: true
-  checksum: 2af7c2eb36ae3eabd8a5c33e09232aca136347271470f6f0d56aabf3a1c497793570a3c183d57e310092ea226f6dab047cc406268f9308c59dbdecb225c2ba3a
+  checksum: fba27a899188eeda78d3ec8eb325cf95c0d36aaab17f27af9ee96b43c4d1e0910b7f129e4251506880d0667900290e81a0fa5e50c5458e8c438b550e040218a1
   languageName: node
   linkType: hard
 
-"@react-native-firebase/auth@npm:^21.6.1":
-  version: 21.14.0
-  resolution: "@react-native-firebase/auth@npm:21.14.0"
+"@react-native-firebase/auth@npm:^22.0.0":
+  version: 22.0.0
+  resolution: "@react-native-firebase/auth@npm:22.0.0"
   dependencies:
     plist: ^3.1.0
   peerDependencies:
-    "@react-native-firebase/app": 21.14.0
+    "@react-native-firebase/app": 22.0.0
     expo: ">=47.0.0"
   peerDependenciesMeta:
     expo:
       optional: true
-  checksum: 8feb0aa52199f1c762c321acebb276a477c4692f5ca20c577531c700c4c28fc55491e77c928deb69a74b7ae8cc659163cefbb324252e75f6e90482d35b880a1c
+  checksum: af90d30930eab8bbf56adc83cfc26b7db50f31d90f84056d49644b6a176a707898dfa95db04f8913d65db5d3c06adf46375cfba173b244b7fa90fa7fd45135aa
+  languageName: node
+  linkType: hard
+
+"@react-native-firebase/firestore@npm:^22.0.0":
+  version: 22.0.0
+  resolution: "@react-native-firebase/firestore@npm:22.0.0"
+  peerDependencies:
+    "@react-native-firebase/app": 22.0.0
+  checksum: 26598b7ffc6688c0c2f61670cd8744b977d58f5288464061fa5174e574b9bbb4f01d105a4348d21d9d64b8baa612164e81003198d7f1f778006a68a5a0a7005e
   languageName: node
   linkType: hard
 
@@ -3953,8 +3962,9 @@ __metadata:
     "@react-native-community/cli": 15.0.1
     "@react-native-community/cli-platform-android": 15.0.1
     "@react-native-community/cli-platform-ios": 15.0.1
-    "@react-native-firebase/app": ^21.6.1
-    "@react-native-firebase/auth": ^21.6.1
+    "@react-native-firebase/app": ^22.0.0
+    "@react-native-firebase/auth": ^22.0.0
+    "@react-native-firebase/firestore": ^22.0.0
     "@react-native-google-signin/google-signin": ^13.1.0
     "@react-native/babel-preset": 0.76.5
     "@react-native/eslint-config": 0.76.5

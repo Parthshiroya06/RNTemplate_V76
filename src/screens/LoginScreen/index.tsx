@@ -20,7 +20,7 @@ import {ImageKeys, IProfileDetails, LoginScreenNavigatorProps} from '@types';
 import {Colors, textStyle} from '@resources';
 
 import {images} from '@assets';
-import {FirebaseAuth} from '@services';
+import {FirebaseAuth, Firestore} from '@services';
 
 import {useDispatch} from 'react-redux';
 import {TextInput as PaperTextInput} from 'react-native-paper';
@@ -204,12 +204,6 @@ const LoginScreen = () => {
           displayName,
           uid,
         } = response.user;
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 0,
-            routes: [{name: 'BottomTabBar'}],
-          }),
-        );
 
         let details: IProfileDetails = {
           name: displayName,
@@ -217,6 +211,15 @@ const LoginScreen = () => {
           uid: uid,
           photoUrl: photoURL,
         };
+        console.log('get user details >>>>>.,', JSON.stringify(response.user));
+        Firestore.collections('Users').then(docs => docs.doc(uid).set(details));
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{name: 'BottomTabBar'}],
+          }),
+        );
+
         dispatch(profileDetails(details));
         dispatch(isUserLogin(true));
         setIsLoad(false);
