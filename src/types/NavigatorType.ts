@@ -5,6 +5,7 @@ export type RootStackParamList = {
   SplashScreen: undefined;
   BottomTabBar: undefined;
   WebViewScreen: undefined;
+  AddProduct: undefined;
 };
 export type BottomTabBarParamList = {
   HomeScreen: undefined;

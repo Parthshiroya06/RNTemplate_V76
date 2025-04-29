@@ -200,30 +200,34 @@ const LoginScreen = () => {
 
         const {
           email: FirebaseEmail,
-          photoURL,
+
           displayName,
           uid,
         } = response.user;
 
-        let details: IProfileDetails = {
-          name: displayName,
-          email: FirebaseEmail,
-          uid: uid,
-          photoUrl: photoURL,
-        };
-        console.log('get user details >>>>>.,', JSON.stringify(response.user));
-        Firestore.collections('Users').then(docs => docs.doc(uid).set(details));
+        const userDocument = await Firestore.getDocument('Users', uid);
+        console.log('User data:', userDocument);
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
             routes: [{name: 'BottomTabBar'}],
           }),
         );
-
+        const {
+          email: user_email,
+          name,
+          uid: uniquId,
+          giro_coin,
+        }: any = userDocument;
+        let details: IProfileDetails = {
+          name: name,
+          email: user_email,
+          uid: uniquId,
+          giro_coin: giro_coin,
+        };
         dispatch(profileDetails(details));
         dispatch(isUserLogin(true));
         setIsLoad(false);
-        console.log('Login Success', response.user, response.user.uid);
       }
     } catch (error) {
       console.log('check is error>>>', error);
@@ -248,12 +252,15 @@ const LoginScreen = () => {
           password.value,
         );
 
-        const {
+        const {email: FirebaseEmail, displayName, uid} = response.user;
+        let details: IProfileDetails = {
+          name: displayName ? displayName : name.value,
           email: FirebaseEmail,
-          photoURL,
-          displayName,
-          uid,
-        } = response.user;
+          uid: uid,
+          giro_coine: 0,
+        };
+        Firestore.collections('Users').then(docs => docs.doc(uid).set(details));
+
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
@@ -261,12 +268,6 @@ const LoginScreen = () => {
           }),
         );
 
-        let details: IProfileDetails = {
-          name: displayName ? displayName : name.value,
-          email: FirebaseEmail,
-          uid: uid,
-          photoUrl: photoURL,
-        };
         dispatch(profileDetails(details));
         dispatch(isUserLogin(true));
       }

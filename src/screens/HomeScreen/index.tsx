@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {FlatList, Image, View} from 'react-native';
 import {styles} from './style';
 import {useSelector} from 'react-redux';
-import {IRootReduxState} from '@types';
-import {useTheme} from '@react-navigation/native';
+import {IRootReduxState, RootStackParamList} from '@types';
+import {useNavigation, useTheme} from '@react-navigation/native';
 import {Text, Card, Button, Avatar, FAB} from 'react-native-paper';
 import {images} from '@assets';
 import firestore from '@react-native-firebase/firestore';
@@ -27,10 +27,18 @@ const tasks = [
   {id: '5', title: 'Help a local business', time: '1h', reward: 'R$10 + bonus'},
 ];
 const HomeScreen = (props: Props) => {
+  const navigation = useNavigation();
   const colors = useTheme().colors;
-  const ass = useSelector((state: IRootReduxState) => state.userDetails);
-  const balance = 18; // mock balance
+  const {profileDetails} = useSelector(
+    (state: IRootReduxState) => state.userDetails,
+  );
 
+  const [coin, setCoin] = useState(profileDetails.giro_coin);
+  const balance = 18; // mock balance
+  console.log('SDfsdf', profileDetails);
+  const goToAddProduct = () => {
+    navigation.navigate('AddProduct');
+  };
   const renderItem = ({item}) => (
     <Card style={styles.taskCard}>
       <View style={styles.titleRow}>
@@ -53,7 +61,7 @@ const HomeScreen = (props: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.balanceText}>GiroCoin Balance</Text>
-      <Text style={styles.balanceValue}>{balance} 💰</Text>
+      <Text style={styles.balanceValue}>{coin} 💰</Text>
 
       <Text style={styles.sectionTitle}>Available Tasks</Text>
       <FlatList
@@ -70,7 +78,9 @@ const HomeScreen = (props: Props) => {
           <Image source={images.plus} style={styles.plusImage} />
         )}
         label="Add Task"
-        onPress={() => console.log('Add Task')}
+        onPress={() => {
+          goToAddProduct();
+        }}
       />
     </View>
   );
