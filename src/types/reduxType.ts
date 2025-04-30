@@ -10,5 +10,6 @@ export interface IRootReduxState {
     isLogin: string;
     profileDetails: IProfileDetails;
     themeMode: string;
+    language_code: string;
   };
 }

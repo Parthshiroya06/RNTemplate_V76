@@ -3,4 +3,5 @@ export const reduxTypes = {
   PROFILE_DATA: 'PROFILE_DATA',
   RESET_DATA: 'RESET_DATA',
   THEME_MODE: 'THEME_MODE',
+  LANGUAGE_CODE: 'LANGUAGE_CODE',
 };

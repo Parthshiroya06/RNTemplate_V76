@@ -76,7 +76,17 @@ const styles = StyleSheet.create({
   profileViewModel: {
     alignItems: 'center',
   },
+  selectedLngView: {
+    paddingHorizontal: 20,
+    paddingVertical: 5,
 
+    borderRadius: 3,
+  },
+  languageView: {
+    width: responsiveWidth(80),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   profileCloseIcon: {
     width: responsiveWidth(6),
     height: responsiveHeight(3),
@@ -129,6 +139,43 @@ const styles = StyleSheet.create({
   },
   labelView: {
     width: responsiveWidth(88),
+  },
+  modalContainer: {
+    width: responsiveWidth(80),
+    padding: responsiveHeight(2),
+    backgroundColor: Colors.offWhite,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  languageItem: {
+    paddingVertical: responsiveHeight(1.5),
+    paddingHorizontal: responsiveWidth(5),
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.lightGrey,
+  },
+  languageText: {
+    ...textStyle(12, 'Roboto200'),
+    fontSize: 16,
+    color: Colors.black,
+  },
+  closeButton: {
+    marginTop: 10,
+    padding: 10,
+  },
+  closeText: {
+    ...textStyle(15, 'Roboto200'),
+    color: Colors.red,
+  },
+  overlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Transparent overlay
+  },
+  title: {
+    ...textStyle(18, 'Roboto400'),
+    marginBottom: responsiveHeight(2),
+    fontWeight: '700',
   },
 });
 

@@ -11,12 +11,14 @@ interface IAction {
   isLogin: boolean;
   profileDetails: IProfileDetails;
   themeMode: string;
+  language_code: string;
 }
 
 const initialValue = {
   isLogin: false,
   profileDetails: null,
   themeMode: 'Auto',
+  language_code: 'en_US',
 };
 export const userDetails = (state = initialValue, action: IAction) => {
   switch (action.type) {
@@ -34,6 +36,11 @@ export const userDetails = (state = initialValue, action: IAction) => {
       return {
         ...state,
         themeMode: action.themeMode,
+      };
+    case reduxTypes.LANGUAGE_CODE:
+      return {
+        ...state,
+        language_code: action.language_code,
       };
     case reduxTypes.RESET_DATA:
       return initialValue;

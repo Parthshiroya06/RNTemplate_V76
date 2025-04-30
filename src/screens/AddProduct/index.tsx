@@ -18,6 +18,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {Firestore} from '@services';
 import {IRootReduxState} from '@types';
 import {useSelector} from 'react-redux';
+import {localize} from '@languages';
 type Props = {};
 const common_obj = {
   value: '',
@@ -129,7 +130,7 @@ const AddProduct = (props: Props) => {
           ) {
             state_object.estimated_value = {
               ...state_object.estimated_value,
-              isError: 'Enter Amount',
+              isError: localize('enter_amount'),
             };
 
             inputRef1.current?.focus();
@@ -139,7 +140,7 @@ const AddProduct = (props: Props) => {
           if (input.product_name?.value.length < 3) {
             state_object.product_name = {
               ...state_object.product_name,
-              isError: 'Enter must be 3 character need',
+              isError: localize('enter_must_be_character'),
             };
 
             inputRef.current?.focus();
@@ -221,7 +222,7 @@ const AddProduct = (props: Props) => {
       <View style={styles.container}>
         <InputBox
           refs={inputRef}
-          label={'Product Name'}
+          label={localize('product_name')}
           blurOnSubmit={true}
           value={input.product_name?.value}
           onChangeText={text => {
@@ -248,7 +249,7 @@ const AddProduct = (props: Props) => {
         {_renderLabelText(input.product_name?.isError)}
         <InputBox
           refs={inputRef1}
-          label={'Estimated Name'}
+          label={localize('estimated_time')}
           blurOnSubmit={true}
           keyboardType="numeric"
           value={input.estimated_value?.value}
@@ -281,7 +282,7 @@ const AddProduct = (props: Props) => {
         {_renderLabelText(input.estimated_value?.isError)}
         <InputBox
           refs={inputRef2}
-          label={'Enter description(Optional)'}
+          label={localize('enter_discription')}
           blurOnSubmit={true}
           value={input.remarks}
           onChangeText={text => {
@@ -312,7 +313,7 @@ const AddProduct = (props: Props) => {
         </Pressable>
 
         <CommonButton
-          title={'SAVE'}
+          title={localize('save')}
           onPress={() => {
             onSubmit();
           }}

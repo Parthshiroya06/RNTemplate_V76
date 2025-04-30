@@ -5,19 +5,21 @@ import {IRootReduxState} from '@types';
 import {useSelector} from 'react-redux';
 
 import {textStyle} from '@resources';
-import {localize} from '@languages';
+import {changeLanguage, localize} from '@languages';
 import {CommonActions, useNavigation, useTheme} from '@react-navigation/native';
 import {FirebaseAuth} from '@services';
 
 const SplashScreen = () => {
   const colors = useTheme().colors;
-  const {isLogin} = useSelector((state: IRootReduxState) => state.userDetails);
+  const {isLogin, language_code} = useSelector(
+    (state: IRootReduxState) => state.userDetails,
+  );
 
   const navigation = useNavigation();
 
   useEffect(() => {
     FirebaseAuth.googleConfigure();
-
+    changeLanguage(language_code);
     setTimeout(() => {
       navigation.dispatch(
         CommonActions.reset({
@@ -26,7 +28,7 @@ const SplashScreen = () => {
         }),
       );
     }, 2000);
-  }, [navigation, isLogin]);
+  }, [navigation, isLogin, language_code]);
 
   return (
     <View style={[styles.container, {backgroundColor: colors.background}]}>

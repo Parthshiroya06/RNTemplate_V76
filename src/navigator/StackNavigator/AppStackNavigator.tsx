@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AddProduct, WebViewScreen} from '@screen';
-import {RootStackParamList} from '@types';
+import {IRootReduxState, RootStackParamList} from '@types';
+import {localize} from '@languages';
+import {useSelector} from 'react-redux';
 
 const AppStack = createNativeStackNavigator<RootStackParamList>();
 
@@ -23,7 +25,7 @@ const AppStackNavigator = () => {
         component={AddProduct}
         options={({route}) => {
           return {
-            headerTitle: 'Products',
+            headerTitle: localize('products'),
             headerShown: true,
           };
         }}

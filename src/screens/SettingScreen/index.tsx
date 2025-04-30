@@ -3,6 +3,7 @@ import React, {useRef, useState} from 'react';
 import {
   Alert,
   Animated,
+  FlatList,
   Image,
   LayoutAnimation,
   Platform,
@@ -28,8 +29,8 @@ import {
   SegmentedControl,
 } from '@components';
 import {IProfileDetails, IRootReduxState} from '@types';
-import {profileDetails, storeThemeMode} from '@actions';
-import {localize} from '@languages';
+import {languageSelection, profileDetails, storeThemeMode} from '@actions';
+import {changeLanguage, localize} from '@languages';
 import DeviceInfo from 'react-native-device-info';
 type Props = {};
 if (
@@ -43,9 +44,11 @@ const SettingScreen = (props: Props) => {
   const colors = useTheme().colors;
   const theme = useColorScheme();
   const inputRef = useRef<TextInput>(null);
-  const {themeMode, profileDetails: profile_details} = useSelector(
-    (state: IRootReduxState) => state.userDetails,
-  );
+  const {
+    themeMode,
+    profileDetails: profile_details,
+    language_code,
+  } = useSelector((state: IRootReduxState) => state.userDetails);
 
   const navigation = useNavigation();
 
@@ -68,6 +71,7 @@ const SettingScreen = (props: Props) => {
           name: 'Theme',
           icon: 'ic_darkMode',
         },
+        {name: 'Language', icon: 'ic_translation'},
         {name: 'SignOut', icon: 'ic_signout'},
       ],
     },
@@ -182,7 +186,7 @@ const SettingScreen = (props: Props) => {
         name: input.name.value,
         email: profile_details.email,
         uid: profile_details.uid,
-        photoUrl: profile_details.photoUrl,
+        giro_coin: profile_details.giro_coin,
       };
       dispatch(profileDetails(details));
       setIsModalOpen('');
@@ -326,7 +330,7 @@ const SettingScreen = (props: Props) => {
                 style={[styles.generalImageSty, {tintColor: colors.icons}]}
               />
               <Text style={[textStyle(16, 'Roboto'), {color: colors.text}]}>
-                {item.name}
+                {localize('version')}
               </Text>
             </View>
             <View>
@@ -336,7 +340,41 @@ const SettingScreen = (props: Props) => {
             </View>
           </View>
         );
-
+      case 'Language':
+        return (
+          <Pressable
+            style={[
+              styles.sectionView,
+              {backgroundColor: colors.darktertiary1},
+            ]}
+            onPress={() => {}}>
+            <Image
+              source={images[item.icon]}
+              style={[styles.generalImageSty, {tintColor: colors.icons}]}
+            />
+            <View style={styles.languageView}>
+              <Text style={[textStyle(16, 'Roboto'), {color: colors.text}]}>
+                {localize('language')}
+              </Text>
+              <Pressable
+                onPress={() => {
+                  setIsModalOpen('languages');
+                }}
+                style={[
+                  styles.selectedLngView,
+                  {backgroundColor: colors.lightGrey},
+                ]}>
+                <Text style={[textStyle(13, 'Roboto')]}>
+                  {language_code == 'en_US' ? 'English' : 'Portuguese'}
+                </Text>
+                {/* <Image
+                    source={images[item.icon]}
+                    style={[styles.generalImageSty, {tintColor: colors.icons}]}
+                  /> */}
+              </Pressable>
+            </View>
+          </Pressable>
+        );
       case 'term_title':
       case 'policy_title':
         return (
@@ -374,7 +412,10 @@ const SettingScreen = (props: Props) => {
       </View>
     );
   };
-
+  const languages = [
+    {id: 'en_US', name: 'English'},
+    {id: 'pt_pi', name: 'Portuguese'},
+  ];
   const _renderCommonModel = () => {
     switch (isModalOpen) {
       case 'profile':
@@ -458,6 +499,63 @@ const SettingScreen = (props: Props) => {
                 }}
               />
             </View>
+          </CommonModal>
+        );
+
+      case 'languages':
+        return (
+          <CommonModal
+            modeType="fade"
+            onClose={() => {}}
+            isVisible={isModalOpen === 'languages'}>
+            <Pressable
+              style={[styles.overlay]}
+              activeOpacity={1}
+              onPress={() => {
+                setIsModalOpen('');
+              }}>
+              <View
+                style={[styles.modalContainer, {backgroundColor: colors.card}]}>
+                <Text style={[styles.title, {color: colors.primary}]}>
+                  {'Select Language'}
+                </Text>
+                <FlatList
+                  data={languages}
+                  keyExtractor={item => item.id}
+                  renderItem={({item}) => (
+                    <Pressable
+                      style={styles.languageItem}
+                      onPress={() => {
+                        changeLanguage(item.id);
+                        dispatch(languageSelection(item.id));
+                        setIsModalOpen('');
+                      }}>
+                      <Text
+                        style={[
+                          textStyle(
+                            15,
+                            language_code == item.id ? 'Roboto400' : 'Roboto',
+                          ),
+                          {
+                            color: colors.text,
+                            fontWeight:
+                              language_code == item.id ? '800' : '400',
+                          },
+                        ]}>
+                        {item.name}
+                      </Text>
+                    </Pressable>
+                  )}
+                />
+                <Pressable
+                  style={styles.closeButton}
+                  onPress={() => {
+                    setIsModalOpen('');
+                  }}>
+                  <Text style={styles.closeText}>Cancel</Text>
+                </Pressable>
+              </View>
+            </Pressable>
           </CommonModal>
         );
     }

@@ -19,3 +19,10 @@ export const storeThemeMode = (themeMode: string) => {
     themeMode: themeMode,
   };
 };
+
+export const languageSelection = (language_code: string) => {
+  return {
+    type: reduxTypes.LANGUAGE_CODE,
+    language_code: language_code,
+  };
+};

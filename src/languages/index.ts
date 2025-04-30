@@ -1,7 +1,7 @@
 import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import en_US from './english-US.json';
-import fr_FR from './france.json';
+import pt_pi from './portuguese.json';
 
 export const setI18nConfig = async () => {
   try {
@@ -9,7 +9,7 @@ export const setI18nConfig = async () => {
     i18next.use(initReactI18next).init({
       resources: {
         en_US: {translation: en_US},
-        fr_FR: {translation: fr_FR},
+        pt_pi: {translation: pt_pi},
       },
       lng: 'en_US',
       fallbackLng: 'en_US',

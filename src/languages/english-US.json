@@ -18,6 +18,7 @@
   "dark": "Dark",
   "signout": "SignOut",
   "appearance": "Appearance",
+  "version":"Version",
   "sigOut_message": "Are you sure you want to signout",
   "already_have_account": "Already have an account?",
   "cancel": "Cancel",
@@ -37,6 +38,34 @@
   "password_not_match": "Passwords you entered do not match",
   "please_enter_name": "Please enter name",
   "profile": "Profile",
+  "language":"Language",
   "edit_profile": "Edit Profile",
-  "email": "Email"
+  "email": "Email",
+  "share_link_text": "Share links in groups/status",
+  "min": "min",
+  "complete_survey": "Complete a survey",
+  "record_video_text": "Record a 30s video about the app",
+  "refer_friends": "Refer friends",
+  "per_friend":"per friend",
+  "help_local_business": "Help a local business",
+  "bonus": "bonus",
+  "reward":"Reward:",
+  "giro_coin":"GiroCoins",
+  "est_time":"Est. Time:",
+  "do_task":"Do Task",
+  "giroCoin_balance":"GiroCoin Balance",
+  "available_task":"Available Tasks",
+  "h":"h",
+  "GC":"GC",
+  "add_task":"Add Task",
+  "enter_amount":"Enter Amount",
+  "enter_must_be_character":"Enter must be 3 character need",
+  "product_name":"Product Name",
+  "estimated_time":"Estimated Name",
+  "enter_discription":"Enter description(Optional)",
+  "save":"SAVE",  
+  "products": "Products"
+
+
+
 }

@@ -8,25 +8,42 @@ import {useNavigation, useTheme} from '@react-navigation/native';
 import {Text, Card, Button, Avatar, FAB} from 'react-native-paper';
 import {images} from '@assets';
 import firestore from '@react-native-firebase/firestore';
+import {localize} from '@languages';
 type Props = {};
-const tasks = [
-  {
-    id: '1',
-    title: 'Share links in groups/status',
-    time: '20 min',
-    reward: 'R$5 or 10 GC',
-  },
-  {id: '2', title: 'Complete a survey', time: '5 min', reward: 'R$2'},
-  {
-    id: '3',
-    title: 'Record a 30s video about the app',
-    time: '10 min',
-    reward: 'R$5 or 10 GC',
-  },
-  {id: '4', title: 'Refer friends', time: '—', reward: 'R$3 per friend'},
-  {id: '5', title: 'Help a local business', time: '1h', reward: 'R$10 + bonus'},
-];
+
 const HomeScreen = (props: Props) => {
+  const tasks = [
+    {
+      id: '1',
+      title: localize('share_link_text'),
+      time: `20 ${localize('min')}`,
+      reward: `R$5 or 10 ${localize('min')}`,
+    },
+    {
+      id: '2',
+      title: localize('complete_survey'),
+      time: `5 ${localize('min')}`,
+      reward: 'R$2',
+    },
+    {
+      id: '3',
+      title: localize('record_video_text'),
+      time: `10 ${localize('min')}`,
+      reward: `R$5 or 10 ${localize('GC')}`,
+    },
+    {
+      id: '4',
+      title: localize('refer_friends'),
+      time: '—',
+      reward: `R$3 ${localize('per_friend')}`,
+    },
+    {
+      id: '5',
+      title: localize('help_local_business'),
+      time: `1${localize('h')}`,
+      reward: `R$10 + ${localize('help_local_business')}`,
+    },
+  ];
   const navigation = useNavigation();
   const colors = useTheme().colors;
   const {profileDetails} = useSelector(
@@ -35,7 +52,7 @@ const HomeScreen = (props: Props) => {
 
   const [coin, setCoin] = useState(profileDetails.giro_coin);
   const balance = 18; // mock balance
-  console.log('SDfsdf', profileDetails);
+
   const goToAddProduct = () => {
     navigation.navigate('AddProduct');
   };
@@ -46,24 +63,26 @@ const HomeScreen = (props: Props) => {
         <View style={{flex: 1, marginLeft: 10}}>
           <Text style={styles.taskTitle}>{item.title}</Text>
           <Text style={styles.taskSubtitle}>
-            Reward: {item.reward} GiroCoins
+            {`${localize('reward')} ${item.reward} ${localize('giro_coin')}`}
           </Text>
-          <Text style={styles.taskSubtitle}>Est. Time: {item.time}</Text>
+          <Text style={styles.taskSubtitle}>{`${localize('est_time')} ${
+            item.time
+          }`}</Text>
         </View>
       </View>
       <Card.Actions>
         <Button mode="contained" onPress={() => console.log('Task started')}>
-          Do Task
+          {localize('do_task')}
         </Button>
       </Card.Actions>
     </Card>
   );
   return (
     <View style={styles.container}>
-      <Text style={styles.balanceText}>GiroCoin Balance</Text>
+      <Text style={styles.balanceText}>{localize('giroCoin_balance')}</Text>
       <Text style={styles.balanceValue}>{coin} 💰</Text>
 
-      <Text style={styles.sectionTitle}>Available Tasks</Text>
+      <Text style={styles.sectionTitle}>{localize('available_task')}</Text>
       <FlatList
         style={{flex: 1}}
         data={tasks}
@@ -77,7 +96,7 @@ const HomeScreen = (props: Props) => {
         icon={({color, size}) => (
           <Image source={images.plus} style={styles.plusImage} />
         )}
-        label="Add Task"
+        label={localize('add_task')}
         onPress={() => {
           goToAddProduct();
         }}

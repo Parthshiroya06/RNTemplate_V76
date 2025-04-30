@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import * as Screen from '@screen';
-import {BottomTabBarParamList, ImageKeys, ScreenComponents} from '@types';
+import {
+  BottomTabBarParamList,
+  ImageKeys,
+  IRootReduxState,
+  ScreenComponents,
+} from '@types';
 import {
   Dimensions,
   Easing,
@@ -19,6 +24,7 @@ import {
 import {isIpad} from '@utils';
 import {useTheme} from '@react-navigation/native';
 import {localize} from '@languages';
+import {useSelector} from 'react-redux';
 
 const BottomTab = createBottomTabNavigator<BottomTabBarParamList>();
 
@@ -64,7 +70,15 @@ const BottomTabNavigator = () => {
     HomeScreen: Screen.HomeScreen,
     SettingScreen: Screen.SettingScreen,
   };
+  const {language_code} = useSelector(
+    (state: IRootReduxState) => state.userDetails,
+  );
   const isDarkMode = useColorScheme();
+
+  const [set, setState] = useState('');
+  useEffect(() => {
+    setState('');
+  }, [language_code]);
 
   const _addScreen = (
     name: keyof ScreenComponents,
@@ -76,7 +90,7 @@ const BottomTabNavigator = () => {
         name={name}
         component={screens[name]}
         options={{
-          tabBarLabel: label,
+          tabBarLabel: localize(label),
           headerTitle: localize(name),
           tabBarLabelPosition: isIpad() ? 'beside-icon' : 'below-icon',
           tabBarPosition: 'bottom',
@@ -109,8 +123,8 @@ const BottomTabNavigator = () => {
           height: responsiveHeight(isIpad() ? 5 : 6.5),
         },
       }}>
-      {_addScreen('HomeScreen', 'Home', 'ic_home')}
-      {_addScreen('SettingScreen', 'Setting', 'ic_setting')}
+      {_addScreen('HomeScreen', 'home', 'ic_home')}
+      {_addScreen('SettingScreen', 'setting', 'ic_setting')}
     </BottomTab.Navigator>
   );
 };

@@ -5,17 +5,18 @@ type Props = {
   onClose?: () => void;
   isVisible: boolean;
   children: React.ReactNode;
+  modeType?: 'slide' | 'none' | 'fade';
 };
 
 const CommonModal = (props: Props) => {
-  const {onClose, isVisible, children} = props;
+  const {onClose, isVisible, children, modeType = 'slide'} = props;
   return (
     <Modal
       visible={isVisible}
       style={[styles.modalContainer]}
       transparent
       onRequestClose={onClose}
-      animationType="slide">
+      animationType={modeType}>
       {children}
     </Modal>
   );
