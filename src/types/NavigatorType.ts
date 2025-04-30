@@ -4,7 +4,9 @@ export type RootStackParamList = {
   LoginScreen: {title: string};
   SplashScreen: undefined;
   BottomTabBar: undefined;
+  CategoryScreen: undefined;
   WebViewScreen: undefined;
+  ProductScreen: undefined;
 };
 export type BottomTabBarParamList = {
   HomeScreen: undefined;
@@ -23,4 +25,14 @@ export type SplashScreenNavigatorProps = NativeStackNavigationProp<
 export type HomeScreenNavigatorProps = NativeStackNavigationProp<
   BottomTabBarParamList,
   'HomeScreen'
+>;
+
+export type CategoryScreenNavigatorProps = NativeStackNavigationProp<
+  RootStackParamList,
+  'CategoryScreen'
+>;
+
+export type ProductScreenNavigatorProps = NativeStackNavigationProp<
+  RootStackParamList,
+  'ProductScreen'
 >;

@@ -1,7 +1,7 @@
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as Screen from '@screen';
-import {BottomTabBarParamList, ImageKeys, ScreenComponents} from '@types';
+import { BottomTabBarParamList, ImageKeys, ScreenComponents } from '@types';
 import {
   Dimensions,
   Easing,
@@ -9,16 +9,16 @@ import {
   StyleSheet,
   useColorScheme,
 } from 'react-native';
-import {images} from '@assets';
+import { images } from '@assets';
 import {
   Colors,
   responsiveFont,
   responsiveHeight,
   responsiveWidth,
 } from '@resources';
-import {isIpad} from '@utils';
-import {useTheme} from '@react-navigation/native';
-import {localize} from '@languages';
+import { isIpad } from '@utils';
+import { useTheme } from '@react-navigation/native';
+import { localize } from '@languages';
 
 const BottomTab = createBottomTabNavigator<BottomTabBarParamList>();
 
@@ -79,10 +79,9 @@ const BottomTabNavigator = () => {
           tabBarLabel: label,
           headerTitle: localize(name),
           tabBarLabelPosition: isIpad() ? 'beside-icon' : 'below-icon',
-          tabBarPosition: 'bottom',
 
           // eslint-disable-next-line react/no-unstable-nested-components
-          tabBarIcon: ({focused}) => {
+          tabBarIcon: ({ focused }) => {
             return (
               <Image
                 source={images[icon]}
@@ -108,14 +107,16 @@ const BottomTabNavigator = () => {
         tabBarStyle: {
           height: responsiveHeight(isIpad() ? 5 : 6.5),
         },
-      }}>
+      }}
+      initialRouteName="HomeScreen"
+    >
       {_addScreen('HomeScreen', 'Home', 'ic_home')}
       {_addScreen('SettingScreen', 'Setting', 'ic_setting')}
     </BottomTab.Navigator>
   );
 };
 
-export {BottomTabNavigator};
+export { BottomTabNavigator };
 
 const styles = StyleSheet.create({
   imageStyle: {
