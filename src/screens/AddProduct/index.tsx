@@ -19,6 +19,7 @@ import {Firestore} from '@services';
 import {IRootReduxState} from '@types';
 import {useSelector} from 'react-redux';
 import {localize} from '@languages';
+import {TextInput as PaperTextInput} from 'react-native-paper';
 type Props = {};
 const common_obj = {
   value: '',
@@ -89,8 +90,8 @@ const serviceCategories = [
 const AddProduct = (props: Props) => {
   const colors = useTheme().colors;
   const navigation = useNavigation();
-  const profileDetails = useSelector(
-    (state: IRootReduxState) => state.userDetails.profileDetails,
+  const {profileDetails, select_currency} = useSelector(
+    (state: IRootReduxState) => state.userDetails,
   );
   const serviceList = serviceCategories.flatMap(category =>
     category.data.map(service => ({
@@ -162,6 +163,7 @@ const AddProduct = (props: Props) => {
           estimated_value: input.estimated_value.value,
           discription: input.remarks,
           selected_service: input.selected_service,
+          select_currency: select_currency,
           uid: profileDetails.uid,
         };
         setIsLoading(true);
@@ -215,6 +217,7 @@ const AddProduct = (props: Props) => {
       </CommonModal>
     );
   };
+
   return (
     <KeyboardAwareScrollView
       showsVerticalScrollIndicator={false}
@@ -247,7 +250,21 @@ const AddProduct = (props: Props) => {
           }}
         />
         {_renderLabelText(input.product_name?.isError)}
+
         <InputBox
+          right={
+            <PaperTextInput.Icon
+              disabled={true}
+              style={{width: 100, paddingEnd: 20}}
+              icon={() => (
+                <Text
+                  style={[
+                    textStyle(14, 'Roboto400'),
+                    {fontWeight: '600'},
+                  ]}>{`${select_currency.code}(${select_currency.symbol})`}</Text>
+              )}
+            />
+          }
           refs={inputRef1}
           label={localize('estimated_time')}
           blurOnSubmit={true}

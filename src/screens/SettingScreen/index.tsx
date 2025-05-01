@@ -28,8 +28,13 @@ import {
   Loader,
   SegmentedControl,
 } from '@components';
-import {IProfileDetails, IRootReduxState} from '@types';
-import {languageSelection, profileDetails, storeThemeMode} from '@actions';
+import {currencySysmbol, IProfileDetails, IRootReduxState} from '@types';
+import {
+  currencySelection,
+  languageSelection,
+  profileDetails,
+  storeThemeMode,
+} from '@actions';
 import {changeLanguage, localize} from '@languages';
 import DeviceInfo from 'react-native-device-info';
 type Props = {};
@@ -39,6 +44,36 @@ if (
 ) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
+const countries = [
+  {
+    name: 'US Dollar',
+    symbol: 'US$',
+    code: 'USD',
+    locale: 'en_US',
+    country: 'United States',
+  },
+  {
+    name: 'Euro',
+    symbol: '€',
+    code: 'EUR',
+    locale: 'pt_PT',
+    country: 'Portugal',
+  },
+  {
+    name: 'Brazilian Real',
+    symbol: 'R$',
+    code: 'BRL',
+    locale: 'pt_BR',
+    country: 'Brazil',
+  },
+  {
+    name: 'Euro',
+    symbol: '€',
+    code: 'EUR',
+    locale: 'fr_FR',
+    country: 'France',
+  },
+];
 
 const SettingScreen = (props: Props) => {
   const colors = useTheme().colors;
@@ -48,6 +83,7 @@ const SettingScreen = (props: Props) => {
     themeMode,
     profileDetails: profile_details,
     language_code,
+    select_currency,
   } = useSelector((state: IRootReduxState) => state.userDetails);
 
   const navigation = useNavigation();
@@ -72,6 +108,7 @@ const SettingScreen = (props: Props) => {
           icon: 'ic_darkMode',
         },
         {name: 'Language', icon: 'ic_translation'},
+        {name: 'Currency', icon: 'ic_currency'},
         {name: 'SignOut', icon: 'ic_signout'},
       ],
     },
@@ -91,6 +128,8 @@ const SettingScreen = (props: Props) => {
   const [tabIndex, setTabIndex] = useState(
     themeMode == 'Auto' ? 0 : themeMode == 'Light' ? 1 : 2,
   );
+  const [selectedCurrency, setSelectedCurrency] =
+    useState<currencySysmbol>(select_currency);
   const rotationValues = useRef<{[key: string]: Animated.Value}>({});
 
   const toggleSection = (sectionTitle: string) => {
@@ -161,6 +200,8 @@ const SettingScreen = (props: Props) => {
       </Pressable>
     );
   };
+
+  const selectCurrency = () => {};
   const signOut = async () => {
     try {
       setIsLoad(true);
@@ -206,7 +247,8 @@ const SettingScreen = (props: Props) => {
   };
   const _renderItem = ({item}: {item: any}) => {
     let isThemeMode = themeMode;
-
+    const language = languages.find(lang => lang.id === language_code)?.name;
+    console.log('sdfsdfsDF>>>>>', language);
     if (themeMode === 'Auto') {
       let isAutoTheme = theme === 'dark' ? 'Dark' : 'Light';
       isThemeMode = isAutoTheme;
@@ -364,13 +406,42 @@ const SettingScreen = (props: Props) => {
                   styles.selectedLngView,
                   {backgroundColor: colors.lightGrey},
                 ]}>
-                <Text style={[textStyle(13, 'Roboto')]}>
-                  {language_code == 'en_US' ? 'English' : 'Portuguese'}
-                </Text>
+                <Text style={[textStyle(13, 'Roboto')]}>{language}</Text>
                 {/* <Image
                     source={images[item.icon]}
                     style={[styles.generalImageSty, {tintColor: colors.icons}]}
                   /> */}
+              </Pressable>
+            </View>
+          </Pressable>
+        );
+      case 'Currency':
+        return (
+          <Pressable
+            style={[
+              styles.sectionView,
+              {backgroundColor: colors.darktertiary1},
+            ]}
+            onPress={selectCurrency}>
+            <Image
+              source={images[item.icon]}
+              style={[styles.generalImageSty, {tintColor: colors.icons}]}
+            />
+            <View style={styles.languageView}>
+              <Text style={[textStyle(16, 'Roboto'), {color: colors.text}]}>
+                {localize('currency')}
+              </Text>
+              <Pressable
+                onPress={() => {
+                  setIsModalOpen('currency');
+                }}
+                style={[
+                  styles.selectedLngView,
+                  {backgroundColor: colors.lightGrey},
+                ]}>
+                <Text style={[textStyle(13, 'Roboto')]}>
+                  {`${selectedCurrency.code}(${selectedCurrency.symbol})`}
+                </Text>
               </Pressable>
             </View>
           </Pressable>
@@ -415,6 +486,8 @@ const SettingScreen = (props: Props) => {
   const languages = [
     {id: 'en_US', name: 'English'},
     {id: 'pt_pi', name: 'Portuguese'},
+    {id: 'fr_FR', name: 'French'},
+    {id: 'es_ES', name: 'Spanish'},
   ];
   const _renderCommonModel = () => {
     switch (isModalOpen) {
@@ -552,6 +625,90 @@ const SettingScreen = (props: Props) => {
                   onPress={() => {
                     setIsModalOpen('');
                   }}>
+                  <Text style={styles.closeText}>Cancel</Text>
+                </Pressable>
+              </View>
+            </Pressable>
+          </CommonModal>
+        );
+
+      case 'currency':
+        return (
+          <CommonModal
+            modeType="fade"
+            onClose={() => {}}
+            isVisible={isModalOpen === 'currency'}>
+            <Pressable
+              style={styles.overlay}
+              activeOpacity={1}
+              onPress={() => setIsModalOpen('')}>
+              <View
+                style={[
+                  styles.modalCourrencyContainer,
+                  {backgroundColor: colors.card},
+                ]}>
+                <Text style={[styles.title, {color: colors.primary}]}>
+                  {localize('select_currency')}
+                </Text>
+
+                <FlatList
+                  data={countries}
+                  keyExtractor={item => item.locale}
+                  renderItem={({item}) => {
+                    return (
+                      <Pressable
+                        style={styles.item}
+                        onPress={() => {
+                          setSelectedCurrency(item);
+                          setIsModalOpen('');
+                          dispatch(currencySelection(item));
+                        }}>
+                        <View style={styles.currencyView}>
+                          <Text
+                            style={[
+                              textStyle(
+                                15,
+                                selectedCurrency.locale === item.locale
+                                  ? 'Roboto400'
+                                  : 'Roboto',
+                              ),
+                              {
+                                color: colors.text,
+                                fontWeight:
+                                  selectedCurrency.locale === item.locale
+                                    ? '800'
+                                    : '400',
+                              },
+                            ]}>
+                            {`${item.country} `}
+                          </Text>
+                          <Text
+                            style={[
+                              textStyle(
+                                15,
+                                selectedCurrency.locale === item.locale
+                                  ? 'Roboto400'
+                                  : 'Roboto',
+                              ),
+                              {
+                                color: colors.text,
+                                fontWeight:
+                                  selectedCurrency.locale === item.locale
+                                    ? '800'
+                                    : '400',
+                              },
+                            ]}>
+                            {` ${item.code}(${item.symbol})`}
+                          </Text>
+                        </View>
+                      </Pressable>
+                    );
+                  }}
+                />
+
+                <Pressable
+                  style={styles.closeButton}
+                  onPress={() => setIsModalOpen('')}>
                   <Text style={styles.closeText}>Cancel</Text>
                 </Pressable>
               </View>

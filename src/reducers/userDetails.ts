@@ -1,6 +1,6 @@
 import {reduxTypes} from '@constants';
 
-import {IProfileDetails} from '@types';
+import {currencySysmbol, IProfileDetails} from '@types';
 
 // export interface IUserState {
 //   isLogin: boolean;
@@ -12,6 +12,7 @@ interface IAction {
   profileDetails: IProfileDetails;
   themeMode: string;
   language_code: string;
+  select_currency: currencySysmbol;
 }
 
 const initialValue = {
@@ -19,6 +20,13 @@ const initialValue = {
   profileDetails: null,
   themeMode: 'Auto',
   language_code: 'en_US',
+  select_currency: {
+    name: 'US Dollar',
+    symbol: 'US$',
+    code: 'USD',
+    locale: 'en_US',
+    country: 'United States',
+  },
 };
 export const userDetails = (state = initialValue, action: IAction) => {
   switch (action.type) {
@@ -41,6 +49,11 @@ export const userDetails = (state = initialValue, action: IAction) => {
       return {
         ...state,
         language_code: action.language_code,
+      };
+    case reduxTypes.SELECT_CURRENCY:
+      return {
+        ...state,
+        select_currency: action.select_currency,
       };
     case reduxTypes.RESET_DATA:
       return initialValue;

@@ -4,4 +4,5 @@ export const reduxTypes = {
   RESET_DATA: 'RESET_DATA',
   THEME_MODE: 'THEME_MODE',
   LANGUAGE_CODE: 'LANGUAGE_CODE',
+  SELECT_CURRENCY: 'select_currency',
 };

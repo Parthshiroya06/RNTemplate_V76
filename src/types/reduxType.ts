@@ -11,5 +11,14 @@ export interface IRootReduxState {
     profileDetails: IProfileDetails;
     themeMode: string;
     language_code: string;
+    select_currency: currencySysmbol;
   };
+}
+
+export interface currencySysmbol {
+  country: string;
+  locale: string;
+  symbol: string;
+  code: string;
+  name: string;
 }

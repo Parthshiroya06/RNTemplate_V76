@@ -177,6 +177,27 @@ const styles = StyleSheet.create({
     marginBottom: responsiveHeight(2),
     fontWeight: '700',
   },
+
+  item: {
+    paddingVertical: 12,
+    paddingHorizontal: 8,
+    borderBottomColor: Colors.lightGrey,
+    borderBottomWidth: 1,
+  },
+  currencyView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(80),
+    paddingVertical: 2,
+    paddingHorizontal: 10,
+  },
+  modalCourrencyContainer: {
+    width: responsiveWidth(90),
+    padding: responsiveHeight(2),
+    backgroundColor: Colors.offWhite,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
 });
 
 export {styles};

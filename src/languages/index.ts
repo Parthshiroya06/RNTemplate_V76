@@ -2,6 +2,8 @@ import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import en_US from './english-US.json';
 import pt_pi from './portuguese.json';
+import fr_FR from './french.json';
+import es_ES from './spanish.json';
 
 export const setI18nConfig = async () => {
   try {
@@ -10,6 +12,8 @@ export const setI18nConfig = async () => {
       resources: {
         en_US: {translation: en_US},
         pt_pi: {translation: pt_pi},
+        fr_FR: {translation: fr_FR},
+        es_ES: {translation: es_ES},
       },
       lng: 'en_US',
       fallbackLng: 'en_US',

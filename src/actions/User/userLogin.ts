@@ -1,5 +1,5 @@
 import {reduxTypes} from '@constants';
-import {IProfileDetails} from '@types';
+import {currencySysmbol, IProfileDetails} from '@types';
 
 export const isUserLogin = (isLogin: boolean) => {
   return {
@@ -24,5 +24,12 @@ export const languageSelection = (language_code: string) => {
   return {
     type: reduxTypes.LANGUAGE_CODE,
     language_code: language_code,
+  };
+};
+
+export const currencySelection = (select_currency: currencySysmbol) => {
+  return {
+    type: reduxTypes.SELECT_CURRENCY,
+    select_currency: select_currency,
   };
 };

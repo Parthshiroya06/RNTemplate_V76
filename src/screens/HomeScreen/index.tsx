@@ -88,7 +88,7 @@ const HomeScreen = (props: Props) => {
         data={tasks}
         keyExtractor={item => item.id}
         renderItem={renderItem}
-        contentContainerStyle={{marginBottom: 100}}
+        ListFooterComponent={<View style={{height: 100}} />}
       />
 
       <FAB

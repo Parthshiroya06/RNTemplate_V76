@@ -28,6 +28,7 @@ export const images = {
   ic_version: require('./settingsIcons/ic_version.png'),
   ic_edit: require('./settingsIcons/ic_edit.png'),
   ic_translation: require('./settingsIcons/ic_translation.png'),
+  ic_currency: require('./settingsIcons/ic_currency.png'),
 
   Animation_Default_1: require('./lottieAnimation/Animation_Default_1.json'),
 

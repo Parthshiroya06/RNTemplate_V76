@@ -1,5 +1,5 @@
 {
-  "appName": "RNDemo_0.76",
+  "appName": "Fluxa",
   "HomeScreen": "Ecrã Inicial",
   "SettingScreen": "Ecrã de Definições",
   "wel_come": "Bem-vindo ao Fluxa",
@@ -64,5 +64,7 @@
   "estimated_time": "Tempo Estimado",
   "enter_discription": "Introduza a descrição (Opcional)",
   "save": "GUARDAR",
-  "products": "Produtos"
+  "products": "Produtos",
+  "currency": "Moeda",
+  "select_currency": "Selecionar Moeda"
 }
