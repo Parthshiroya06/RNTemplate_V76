@@ -1,6 +1,6 @@
-import {Colors, responsiveHeight, responsiveWidth} from '@resources';
-import {StyleSheet} from 'react-native';
-import {textStyle} from '../../resources/CommonStyle';
+import { Colors, responsiveHeight, responsiveWidth } from '@resources';
+import { StyleSheet } from 'react-native';
+import { textStyle } from '../../resources/CommonStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -44,12 +44,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     marginBottom: 15,
   },
-  button: {
-    width: 140,
-  },
+  button: { width: 140, alignSelf: 'center', paddingHorizontal: 20, borderRadius: 10, alignItems: 'center', marginTop: 20, backgroundColor: "#2b6ecc", flexDirection: 'row', justifyContent: 'center' },
   card: {
     backgroundColor: '#f5f5f5',
   },
 });
 
-  export {styles};
+export { styles };

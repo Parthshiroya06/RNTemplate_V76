@@ -54,4 +54,6 @@ export const styles = StyleSheet.create({
     marginTop: 4,
     color: '#555',
   },
+  button: { width: 140, alignSelf: 'center', paddingHorizontal: 20, borderRadius: 10, alignItems: 'center', marginTop: 20, backgroundColor: "#2b6ecc", flexDirection: 'row', justifyContent: 'center' },
+
 });

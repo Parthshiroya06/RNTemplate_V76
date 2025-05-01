@@ -4,7 +4,7 @@ import { LoginScreen, SplashScreen } from '@screen';
 import { RootStackParamList } from '@types';
 import { BottomTabNavigator } from 'navigator/BottomTabNavigator';
 import { CategoryScreen } from 'screens/CategoryScreen';
-import { ProductScreen } from 'screens/ProductScreen';
+import ProductScreen from 'screens/ProductScreen';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 

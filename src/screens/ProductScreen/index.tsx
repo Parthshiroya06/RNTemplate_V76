@@ -1,8 +1,10 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { View, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Button, Text, Card, Title, Paragraph } from 'react-native-paper';
 import { styles } from './style';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { Colors } from '@resources';
 
 const ProductScreen = () => {
 
@@ -27,12 +29,32 @@ const ProductScreen = () => {
             </View>
 
             <View style={styles.buttonRow}>
-                <Button mode="contained" onPress={() => { navigation.goBack() }} style={styles.button}>
-                    Back
-                </Button>
-                <Button mode="contained" onPress={() => { }} style={styles.button}>
-                    Add to Cart
-                </Button>
+                <TouchableOpacity style={styles.button}
+                    onPress={() => navigation.goBack()}>
+                    <Icon
+                        name={'arrow-back-outline'}
+                        size={20}
+                        color={Colors.offWhite}
+                    />
+                    <Text
+                        style={{ alignSelf: 'center', paddingVertical: 10, marginLeft: 10, color: Colors.offWhite }}
+
+                    >
+                        Back
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button}>
+                    <Icon
+                        name={'cart'}
+                        size={20}
+                        color={Colors.offWhite}
+                    />
+                    <Text
+                        style={{ alignSelf: 'center', paddingVertical: 10, marginLeft: 10, color: Colors.offWhite }}
+                    >
+                        Add to Cart
+                    </Text>
+                </TouchableOpacity>
             </View>
 
             <Card style={styles.card}>

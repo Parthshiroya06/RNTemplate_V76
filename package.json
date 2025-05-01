@@ -8,6 +8,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
+    "apk": "cd android && ./gradlew clean && ./gradlew assembleRelease && open . && cd ..",
     "cleanup": "rm -rf node_modules yarn.lock android/app/build ios/build ios/Pods ios/Podfile.lock",
     "project-clean": "yarn cleanup; yarn; cd android && ./gradlew clean && cd .. && cd ios && pod install && cd ..",
     "apk-release": "cd android && ./gradlew clean && ./gradlew assembleRelease && open . && cd .."

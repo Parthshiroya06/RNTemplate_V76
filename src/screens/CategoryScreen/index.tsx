@@ -7,14 +7,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useSelector } from 'react-redux';
 import { useNavigation, useRoute, useTheme } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
 import { performGetRequest } from '@actions';
 import { endpoints } from '@services';
-import { IRootReduxState } from '@types';
 import { styles } from './style';
 import { Loader } from '@components';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { Colors } from '@resources';
+
 
 export interface ProductsType {
   id: number;
@@ -36,8 +37,8 @@ const CategoryScreen = () => {
   const { category } = route.params as { category: string };
 
   const [products, setProducts] = useState<ProductsType[]>([]);
-  const [loading , setLoading] = useState<boolean>(false);
-  
+  const [loading, setLoading] = useState<boolean>(false);
+
 
   const fetchCategories = async () => {
     setLoading(true);
@@ -75,7 +76,7 @@ const CategoryScreen = () => {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
-        <Loader isLoading={loading} isDefaultLoader/>
+      <Loader isLoading={loading} isDefaultLoader />
       <View style={styles.cattitleview}>
         <Text style={styles.cattitle}>{capitalizeFirstLetter(category)}</Text>
       </View>
@@ -88,17 +89,20 @@ const CategoryScreen = () => {
         renderItem={renderProduct}
       />
 
-      <View style={{ alignItems: 'center', marginTop: 20 }}>
-        <Button
-        //   icon="back"
-          mode="contained"
-          buttonColor="#48a9f8"
-          textColor="#fff"
-          onPress={() => navigation.goBack()}
+      <TouchableOpacity style={styles.button}
+      onPress={() => navigation.goBack()}>
+        <Icon
+          name={'arrow-back-outline'}
+          size={20}
+          color={Colors.offWhite}
+        />
+        <Text
+          style={{alignSelf:'center', paddingVertical:10,marginLeft: 10, color:Colors.offWhite}}
+          
         >
           Back
-        </Button>
-      </View>
+        </Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

@@ -79,7 +79,7 @@ const BottomTabNavigator = () => {
           tabBarLabel: label,
           headerTitle: localize(name),
           tabBarLabelPosition: isIpad() ? 'beside-icon' : 'below-icon',
-
+          headerShown: false,
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ focused }) => {
             return (
