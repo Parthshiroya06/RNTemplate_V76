@@ -10,7 +10,8 @@
     "test": "jest",
     "cleanup": "rm -rf node_modules yarn.lock android/app/build ios/build ios/Pods ios/Podfile.lock",
     "project-clean": "yarn cleanup; yarn; cd android && ./gradlew clean && cd .. && cd ios && pod install && cd ..",
-    "apk-release": "cd android && ./gradlew clean && ./gradlew assembleRelease && open . && cd .."
+    "apk-release": "cd android && ./gradlew clean && ./gradlew assembleRelease && open . && cd ..",
+    "ios-16": "react-native run-ios --simulator 'iPhone 16 Pro'"
   },
   "dependencies": {
     "@apollo/client": "^3.12.0",
