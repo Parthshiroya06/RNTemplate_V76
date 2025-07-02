@@ -52,7 +52,7 @@ const SettingScreen = (props: Props) => {
   const dispatch = useDispatch();
 
   const common_obj = {
-    value: profile_details.name,
+    value: profile_details?.name,
     isError: '',
   };
 
@@ -64,21 +64,22 @@ const SettingScreen = (props: Props) => {
       title: localize('general'),
       data: [
         {name: 'profile', icon: 'ic_profile'},
-        {
-          name: 'Theme',
-          icon: 'ic_darkMode',
-        },
-        {name: 'SignOut', icon: 'ic_signout'},
+        {name: 'Orders', icon: 'ic_signout'},
+        // {
+        //   name: 'Theme',
+        //   icon: 'ic_darkMode',
+        // },
+        // {name: 'SignOut', icon: 'ic_signout'},
       ],
     },
-    {
-      title: localize('about'),
-      data: [
-        {name: 'term_title', icon: 'ic_terms'},
-        {name: 'policy_title', icon: 'ic_privacy'},
-        {name: 'Version', icon: 'ic_version'},
-      ],
-    },
+    // {
+    //   title: localize('about'),
+    //   data: [
+    //     {name: 'term_title', icon: 'ic_terms'},
+    //     {name: 'policy_title', icon: 'ic_privacy'},
+    //     {name: 'Version', icon: 'ic_version'},
+    //   ],
+    // },
   ];
   const [openSections, setOpenSections] = useState<string[]>(['General']);
   const [isModalOpen, setIsModalOpen] = useState<string>('');
@@ -91,7 +92,7 @@ const SettingScreen = (props: Props) => {
 
   const toggleSection = (sectionTitle: string) => {
     // Trigger the layout animation
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 
     const isOpen = openSections.includes(sectionTitle);
 
@@ -187,7 +188,6 @@ const SettingScreen = (props: Props) => {
       dispatch(profileDetails(details));
       setIsModalOpen('');
     } else {
-      console.log('is Error is >>>>>>', input.name);
       inputRef.current?.focus();
       setInputs({
         ...input,
@@ -228,12 +228,12 @@ const SettingScreen = (props: Props) => {
               <Text
                 numberOfLines={1}
                 style={[textStyle(16, 'Roboto'), {color: colors.text}]}>
-                {profile_details?.name}
+                {'David Tim'}
               </Text>
               <Text
                 numberOfLines={1}
                 style={[textStyle(16, 'Roboto'), {color: colors.text}]}>
-                {profile_details?.email}
+                {'david01@gmail.com'}
               </Text>
             </View>
             <Pressable

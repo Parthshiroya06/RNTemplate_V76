@@ -5,7 +5,10 @@ export const images = {
   ic_atharvaLogo: require('./icons/ic_atharvaLogo.png'),
   back_arrow: require('./icons/back_arrow.png'),
   ic_signout: require('./icons/ic_signout.png'),
-
+  ic_outLine: require('./icons/outline.png'),
+  ic_fillLine: require('./icons/fillLine.png'),
+  minus: require('./icons/minus.png'),
+  plus: require('./icons/plus.png'),
   // tab icons screen icons
   ic_home: require('./tabIcon/ic_home.png'),
   ic_setting: require('./tabIcon/ic_setting.png'),

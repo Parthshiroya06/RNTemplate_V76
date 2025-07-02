@@ -22,7 +22,7 @@ const SplashScreen = () => {
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
-          routes: [{name: isLogin ? 'BottomTabBar' : 'LoginScreen'}],
+          routes: [{name: 'BottomTabBar'}],
         }),
       );
     }, 2000);
@@ -32,7 +32,7 @@ const SplashScreen = () => {
     <View style={[styles.container, {backgroundColor: colors.background}]}>
       <Text
         style={[textStyle(30, 'Roboto200', 'center'), {color: colors.text}]}>
-        {localize('wel_come')}
+        {'Food App'}
       </Text>
     </View>
   );

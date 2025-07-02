@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {WebViewScreen} from '@screen';
+import {CartScreen, WebViewScreen} from '@screen';
 import {RootStackParamList} from '@types';
 
 const AppStack = createNativeStackNavigator<RootStackParamList>();
@@ -18,6 +18,16 @@ const AppStackNavigator = () => {
           };
         }}
       />
+      {/* <AppStack.Screen
+        name="CartScreen"
+        component={CartScreen}
+        options={({route}) => {
+          return {
+            headerTitle: 'Cart',
+            headerShown: true,
+          };
+        }}
+      /> */}
     </AppStack.Group>
   );
 };

@@ -27,10 +27,9 @@ const StackNavigator = () => {
   } else {
     isThemeMode = themeMode;
   }
-
+  //  theme={isThemeMode === 'Dark' ? CombinedDarkTheme : CombinedLightTheme}>
   return (
-    <NavigationContainer
-      theme={isThemeMode === 'Dark' ? CombinedDarkTheme : CombinedLightTheme}>
+    <NavigationContainer theme={CombinedLightTheme}>
       <Stack.Navigator
         screenOptions={{headerShown: false}}
         initialRouteName="SplashScreen">

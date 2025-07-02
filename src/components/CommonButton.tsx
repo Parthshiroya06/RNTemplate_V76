@@ -16,11 +16,7 @@ const CommonButton = (props: Props) => {
   const {buttonStyle, title, TitleStyle, onPress, isLoading = false} = props;
   return (
     <Pressable
-      style={[
-        styles.flotButton,
-        {backgroundColor: colors.DarkSlateBlue},
-        buttonStyle,
-      ]}
+      style={[styles.flotButton, {backgroundColor: 'orange'}, buttonStyle]}
       onPress={onPress}>
       {isLoading ? (
         <ActivityIndicator size={25} color={Colors.offWhite} />
@@ -38,7 +34,7 @@ export {CommonButton};
 const styles = StyleSheet.create({
   flotButton: {
     width: responsiveWidth(90),
-    height: responsiveHeight(6),
+    height: responsiveHeight(5.5),
     borderRadius: responsiveWidth(2),
     marginTop: responsiveHeight(1.5),
     //backgroundColor: Colors.blue,

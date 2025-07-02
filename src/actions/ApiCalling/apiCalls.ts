@@ -22,10 +22,7 @@ export const performGetRequest = (endpoint: string) => {
   };
 };
 
-export const performPostRequest = async (
-  endPoint: string,
-  jsonRequest: any,
-) => {
+export const performPostRequest = (endPoint: string, jsonRequest: any) => {
   //   return async (dispatch: Dispatch, getState: any): Promise<any> => {
   return async (): Promise<any> => {
     try {
@@ -37,7 +34,7 @@ export const performPostRequest = async (
     }
   };
 };
-export const performPutRequest = async (endPoint: string, jsonRequest: any) => {
+export const performPutRequest = (endPoint: string, jsonRequest: any) => {
   //   return async (dispatch: Dispatch, getState: any): Promise<any> => {
   return async (): Promise<any> => {
     try {
@@ -50,10 +47,7 @@ export const performPutRequest = async (endPoint: string, jsonRequest: any) => {
   };
 };
 
-export const performDeleteRequest = async (
-  endPoint: string,
-  jsonRequest?: any,
-) => {
+export const performDeleteRequest = (endPoint: string, jsonRequest?: any) => {
   // return async (dispatch: Dispatch, getState: any): Promise<any> => {
   return async (): Promise<any> => {
     try {
