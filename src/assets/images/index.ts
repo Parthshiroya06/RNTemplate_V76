@@ -9,6 +9,7 @@ export const images = {
   ic_fillLine: require('./icons/fillLine.png'),
   minus: require('./icons/minus.png'),
   plus: require('./icons/plus.png'),
+  ic_box: require('./icons/ic_box.png'),
   // tab icons screen icons
   ic_home: require('./tabIcon/ic_home.png'),
   ic_setting: require('./tabIcon/ic_setting.png'),

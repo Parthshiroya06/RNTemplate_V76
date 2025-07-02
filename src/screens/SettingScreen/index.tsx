@@ -64,7 +64,7 @@ const SettingScreen = (props: Props) => {
       title: localize('general'),
       data: [
         {name: 'profile', icon: 'ic_profile'},
-        {name: 'Orders', icon: 'ic_signout'},
+        {name: 'Orders', icon: 'ic_box'},
         // {
         //   name: 'Theme',
         //   icon: 'ic_darkMode',
@@ -248,6 +248,26 @@ const SettingScreen = (props: Props) => {
             </Pressable>
           </Pressable>
         );
+      case 'Orders':
+        return (
+          <Pressable
+            style={[
+              styles.sectionView,
+              {backgroundColor: colors.darktertiary1},
+            ]}
+            onPress={() => {
+              navigation.navigate('PastOrderList');
+            }}>
+            <Image
+              source={images[item.icon]}
+              style={[styles.generalImageSty, {tintColor: colors.icons}]}
+            />
+            <Text style={[textStyle(16, 'Roboto'), {color: colors.text}]}>
+              {localize('signout')}
+            </Text>
+          </Pressable>
+        );
+
       case 'Theme':
         return (
           <View

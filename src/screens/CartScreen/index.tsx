@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {CommonButton} from '@components'; // replace or define this if needed
 import {styles} from './style';
+import {useRoute} from '@react-navigation/native';
 
 const foodData = [
   {id: '1', name: 'Pizza'},
@@ -18,7 +19,9 @@ const foodData = [
 ];
 
 const CartScreen = () => {
-  const [quantities, setQuantities] = useState<{[key: string]: number}>({});
+  const route = useRoute();
+
+  const [quantities, setQuantities] = useState<any>(route.params.param?.count);
   const [deliveryMode, setDeliveryMode] = useState<'Delivery' | 'Pickup'>(
     'Delivery',
   );
@@ -27,36 +30,45 @@ const CartScreen = () => {
     'card',
   );
 
-  const increment = (id: string) => {
-    setQuantities(prev => ({
-      ...prev,
-      [id]: (prev[id] || 0) + 1,
-    }));
+  const [foodlist, setFoodList] = useState([route.params?.param]);
+
+  const increment = () => {
+    let plus_Count = quantities + 1;
+    setQuantities(plus_Count);
+    // setQuantities(prev => ({
+    //   ...prev,
+    //   [id]: (prev[id] || 0) + 1,
+    // }));
   };
 
-  const decrement = (id: string) => {
-    setQuantities(prev => ({
-      ...prev,
-      [id]: Math.max((prev[id] || 0) - 1, 0),
-    }));
+  const decrement = () => {
+    if (quantities > 1) {
+      let minus_Count = quantities - 1;
+      setQuantities(minus_Count);
+
+      // setQuantities(prev => ({
+      //   ...prev,
+      //   [id] Math.max((prev[id] || 0) - 1, 0),
+      // }));
+    }
   };
 
-  const renderItem = ({item}: {item: {id: string; name: string}}) => {
-    const qty = quantities[item.id] || 0;
+  const renderItem = ({
+    item,
+  }: {
+    item: {count: string; price: string; title: string};
+  }) => {
+    const qty = quantities || 0;
 
     return (
       <View style={styles.itemContainer}>
-        <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.name}>{item.title}</Text>
         <View style={styles.controls}>
-          <TouchableOpacity
-            onPress={() => decrement(item.id)}
-            style={styles.btn}>
+          <TouchableOpacity onPress={() => decrement()} style={styles.btn}>
             <Text style={styles.btnText}>−</Text>
           </TouchableOpacity>
           <Text style={styles.qty}>{qty}</Text>
-          <TouchableOpacity
-            onPress={() => increment(item.id)}
-            style={styles.btn}>
+          <TouchableOpacity onPress={() => increment()} style={styles.btn}>
             <Text style={styles.btnText}>+</Text>
           </TouchableOpacity>
         </View>
@@ -75,7 +87,7 @@ const CartScreen = () => {
   return (
     <SafeAreaView style={{flex: 1, padding: 16}}>
       <FlatList
-        data={foodData}
+        data={foodlist}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         removeClippedSubviews={false}

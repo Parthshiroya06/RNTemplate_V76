@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {CartScreen, LoginScreen, SplashScreen} from '@screen';
+import {CartScreen, LoginScreen, PastOrderList, SplashScreen} from '@screen';
 import {RootStackParamList} from '@types';
 import {BottomTabNavigator} from 'navigator/BottomTabNavigator';
 
@@ -17,6 +17,16 @@ const RootStackNavigator = () => {
         options={({route}) => {
           return {
             headerTitle: 'Cart Screen',
+            headerShown: true,
+          };
+        }}
+      />
+      <RootStack.Screen
+        name="PastOrderList"
+        component={PastOrderList}
+        options={({route}) => {
+          return {
+            headerTitle: 'Past Orders',
             headerShown: true,
           };
         }}

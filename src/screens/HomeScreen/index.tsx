@@ -77,9 +77,9 @@ const HomeScreen = (props: Props) => {
       const isNext = Math.abs(index - scrollIndex) <= 1;
 
       let foodName = [
-        {title: 'Stuff MeatBell', price: '$100'},
-        {title: 'Ricotta agnolotti', price: '$50'},
-        {title: 'Fusilli Giganti', price: '$90'},
+        {title: 'Stuff MeatBell', price: '$100', count: 1},
+        {title: 'Ricotta agnolotti', price: '$50', count: 1},
+        {title: 'Fusilli Giganti', price: '$90', count: 1},
       ];
       return (
         <View style={{height}}>
@@ -91,7 +91,7 @@ const HomeScreen = (props: Props) => {
           <FeedFooter
             data={foodName[index]}
             onPress={() => {
-              setItemName(foodName[index].title);
+              setItemName(foodName[index]);
               setIsModalOpen(true);
             }}
           />
@@ -122,7 +122,7 @@ const HomeScreen = (props: Props) => {
                 textStyle(20, 'Roboto400', 'left'),
                 {fontWeight: 'bold'},
               ]}>
-              {isSetItemName}
+              {isSetItemName?.title}
             </Text>
 
             <View
@@ -224,8 +224,14 @@ const HomeScreen = (props: Props) => {
           <CommonButton
             onPress={() => {
               setIsModalOpen(!isModalOpen);
-
-              props.navigation.navigate('CartScreen');
+              console.log('Sdfsdfsdf>>>', isSetItemName);
+              isSetItemName.count = isCount;
+              setItemName(isSetItemName);
+              props.navigation.navigate('CartScreen', {
+                param: isSetItemName,
+                count: isCount,
+              });
+              setCount(1);
             }}
             title={'Add to Cart'}
           />
