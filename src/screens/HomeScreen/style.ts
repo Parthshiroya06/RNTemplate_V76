@@ -39,6 +39,29 @@ const styles = StyleSheet.create({
     marginTop: 10,
     width: responsiveWidth(85),
   },
+  btnViewStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: responsiveWidth(25),
+    marginTop: 10,
+  },
+  btnSty: {
+    borderWidth: 1,
+    padding: 2,
+    borderRadius: 5,
+    borderColor: '#ee7110',
+  },
+  btnImageSty: {resizeMode: 'contain', width: 20, height: 20},
+  radiobtn: {resizeMode: 'contain', width: 25, height: 25},
+  spacialReqView: {marginLeft: 10, marginTop: 10, flexDirection: 'column'},
+  itemListView: {
+    gap: 10,
+    flexDirection: 'row',
+    marginTop: 10,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
 });
 
 export {styles};

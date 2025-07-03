@@ -125,8 +125,7 @@ const HomeScreen = (props: Props) => {
               {isSetItemName?.title}
             </Text>
 
-            <View
-              style={{marginLeft: 10, marginTop: 10, flexDirection: 'column'}}>
+            <View style={styles.spacialReqView}>
               <Text style={[textStyle(18, 'Roboto200', 'left')]}>
                 {'Special Request'}
               </Text>
@@ -176,7 +175,7 @@ const HomeScreen = (props: Props) => {
                             ? images.ic_fillLine
                             : images.ic_outLine
                         }
-                        style={{resizeMode: 'contain', width: 25, height: 25}}
+                        style={styles.radiobtn}
                       />
                     </Pressable>
                     <Text style={[textStyle(15, 'Roboto400', 'left')]}>
@@ -187,15 +186,9 @@ const HomeScreen = (props: Props) => {
               })}
             </View>
           </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              alignItems: 'center',
-              width: responsiveWidth(25),
-              marginTop: 10,
-            }}>
+          <View style={styles.itemListView}>
             <Pressable
+              style={styles.btnSty}
               onPress={() => {
                 if (isCount > 1) {
                   let minus_Count = isCount - 1;
@@ -204,7 +197,7 @@ const HomeScreen = (props: Props) => {
               }}>
               <Image
                 source={images.minus}
-                style={{resizeMode: 'contain', width: 20, height: 20}}
+                style={styles.btnImageSty}
                 tintColor={'#ee7110'}
               />
             </Pressable>
@@ -213,7 +206,8 @@ const HomeScreen = (props: Props) => {
               onPress={() => {
                 let plus_Count = isCount + 1;
                 setCount(plus_Count);
-              }}>
+              }}
+              style={styles.btnSty}>
               <Image
                 source={images.plus}
                 style={{resizeMode: 'contain', width: 20, height: 20}}

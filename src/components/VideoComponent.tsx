@@ -16,7 +16,7 @@ const VideoComponent = ({data, isVisible}) => {
       styles.videoBase,
       {height: Platform.OS === 'ios' ? height : height - 50},
     ],
-    [],
+    [height],
   );
 
   return (

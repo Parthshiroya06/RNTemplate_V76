@@ -11,6 +11,7 @@ import {
 import {CommonButton} from '@components'; // replace or define this if needed
 import {styles} from './style';
 import {useRoute} from '@react-navigation/native';
+import {textStyle} from '@resources';
 
 const foodData = [
   {id: '1', name: 'Pizza'},
@@ -26,6 +27,9 @@ const CartScreen = () => {
     'Delivery',
   );
   const [specialInstructions, setSpecialInstructions] = useState('');
+  const [itemPrice, setItemPrice] = useState(
+    route.params?.param?.price?.replace('$', '') ?? 0,
+  );
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'upi' | 'cod'>(
     'card',
   );
@@ -35,6 +39,9 @@ const CartScreen = () => {
   const increment = () => {
     let plus_Count = quantities + 1;
     setQuantities(plus_Count);
+    let itemValues =
+      Number(plus_Count) * Number(route.params?.param?.price.replace('$', ''));
+    setItemPrice(itemValues);
     // setQuantities(prev => ({
     //   ...prev,
     //   [id]: (prev[id] || 0) + 1,
@@ -45,6 +52,16 @@ const CartScreen = () => {
     if (quantities > 1) {
       let minus_Count = quantities - 1;
       setQuantities(minus_Count);
+      let itemValues =
+        Number(minus_Count) *
+        Number(route.params?.param?.price.replace('$', ''));
+      console.log(
+        'Sdfsdfsdf>>>>>',
+        Number(minus_Count),
+        itemValues,
+        minus_Count,
+      );
+      setItemPrice(itemValues);
 
       // setQuantities(prev => ({
       //   ...prev,
@@ -62,7 +79,13 @@ const CartScreen = () => {
 
     return (
       <View style={styles.itemContainer}>
-        <Text style={styles.name}>{item.title}</Text>
+        <View style={{flexDirection: 'column'}}>
+          <Text style={styles.name}>{item.title}</Text>
+          <Text
+            style={[
+              textStyle(15, 'Roboto200', 'left'),
+            ]}>{`$${itemPrice}`}</Text>
+        </View>
         <View style={styles.controls}>
           <TouchableOpacity onPress={() => decrement()} style={styles.btn}>
             <Text style={styles.btnText}>−</Text>
@@ -89,7 +112,7 @@ const CartScreen = () => {
       <FlatList
         data={foodlist}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={(item, index) => `${item.count}+${index}`}
         removeClippedSubviews={false}
         keyboardShouldPersistTaps="handled"
         ListFooterComponent={
@@ -130,6 +153,7 @@ const CartScreen = () => {
             <TextInput
               placeholder="Special instructions (e.g. 'no peanuts')"
               value={specialInstructions}
+              placeholderTextColor={'grey'}
               onChangeText={setSpecialInstructions}
               multiline
               numberOfLines={3}
