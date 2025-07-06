@@ -1,10 +1,4 @@
-import {
-  Dimensions,
-  Platform,
-  StyleSheet,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import {Platform, StyleSheet, useWindowDimensions, View} from 'react-native';
 import React, {useMemo} from 'react';
 import Video from 'react-native-video';
 import {LinearGradient} from 'react-native-svg';
@@ -19,13 +13,27 @@ const VideoComponent = ({data, isVisible}) => {
     [height],
   );
 
+  // Fallback to first video if array
+  // const videoUri =
+  //   typeof data.video === 'string'
+  //     ? data.video
+  //     : Array.isArray(data.videos)
+  //     ? data.videos[0]
+  //     : null;
+  console.log('dsfsdfsdf>>>>>', data.uri);
+  // if (!videoUri) {
+  //   return null; // or show placeholder
+  // }
+
   return (
     <View style={styles.container}>
       <Video
-        source={{uri: data.video}}
+        source={{
+          uri: data.uri,
+        }}
         repeat
         resizeMode="cover"
-        muted={true}
+        muted
         playInBackground={false}
         paused={!isVisible}
         ignoreSilentSwitch="ignore"
@@ -52,7 +60,7 @@ export {VideoComponent};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    // backgroundColor: 'black',
   },
   videoBase: {
     backgroundColor: 'black',

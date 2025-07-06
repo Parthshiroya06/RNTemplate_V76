@@ -7,7 +7,7 @@ import {useTheme} from '@react-navigation/native';
 
 const FeedFooter = ({data, onPress}) => {
   const {name, price} = data;
-  console.log('dsfsdf', data);
+  console.log('FeedFooter>>>>>>', name, price, data.price);
   const followerCount = Math.floor(Math.random() * 20) + 1;
   const colors = useTheme().colors;
   return (

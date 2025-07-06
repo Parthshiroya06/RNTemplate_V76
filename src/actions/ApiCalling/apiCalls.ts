@@ -8,7 +8,7 @@ export const performGetRequest = (endpoint: string) => {
 
       const response = await wrapper.get(endpoint);
 
-      console.log('check response >>>>', response.data);
+      console.log('check response >>>>', JSON.stringify(response.data));
       return response.data;
     } catch (error: any) {
       console.log('check error is >>>', error);
