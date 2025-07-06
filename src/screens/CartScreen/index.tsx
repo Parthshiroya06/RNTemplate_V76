@@ -27,9 +27,11 @@ const CartScreen = () => {
     'Delivery',
   );
   const [specialInstructions, setSpecialInstructions] = useState('');
-  const [itemPrice, setItemPrice] = useState(
-    route.params?.param?.price?.replace('$', '') ?? 0,
-  );
+
+  let prices =
+    route.params?.param?.price?.replace('$', '') * route.params.param?.count ??
+    0;
+  const [itemPrice, setItemPrice] = useState(prices);
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'upi' | 'cod'>(
     'card',
   );
@@ -73,14 +75,14 @@ const CartScreen = () => {
   const renderItem = ({
     item,
   }: {
-    item: {count: string; price: string; title: string};
+    item: {count: string; price: string; name: string; ingredients_option: []};
   }) => {
     const qty = quantities || 0;
 
     return (
       <View style={styles.itemContainer}>
         <View style={{flexDirection: 'column'}}>
-          <Text style={styles.name}>{item.title}</Text>
+          <Text style={styles.name}>{item.name}</Text>
           <Text
             style={[
               textStyle(15, 'Roboto200', 'left'),

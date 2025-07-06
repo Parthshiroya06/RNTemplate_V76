@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import {
   Alert,
@@ -32,12 +32,12 @@ import {profileDetails, storeThemeMode} from '@actions';
 import {localize} from '@languages';
 import DeviceInfo from 'react-native-device-info';
 type Props = {};
-if (
-  Platform.OS === 'android' &&
-  UIManager.setLayoutAnimationEnabledExperimental
-) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
+// if (
+//   Platform.OS === 'android' &&
+//   UIManager.setLayoutAnimationEnabledExperimental
+// ) {
+//   UIManager.setLayoutAnimationEnabledExperimental(true);
+// }
 
 const SettingScreen = (props: Props) => {
   const colors = useTheme().colors;
@@ -65,21 +65,8 @@ const SettingScreen = (props: Props) => {
       data: [
         {name: 'profile', icon: 'ic_profile'},
         {name: 'Orders', icon: 'ic_box'},
-        // {
-        //   name: 'Theme',
-        //   icon: 'ic_darkMode',
-        // },
-        // {name: 'SignOut', icon: 'ic_signout'},
       ],
     },
-    // {
-    //   title: localize('about'),
-    //   data: [
-    //     {name: 'term_title', icon: 'ic_terms'},
-    //     {name: 'policy_title', icon: 'ic_privacy'},
-    //     {name: 'Version', icon: 'ic_version'},
-    //   ],
-    // },
   ];
   const [openSections, setOpenSections] = useState<string[]>(['General']);
   const [isModalOpen, setIsModalOpen] = useState<string>('');
@@ -89,6 +76,14 @@ const SettingScreen = (props: Props) => {
     themeMode == 'Auto' ? 0 : themeMode == 'Light' ? 1 : 2,
   );
   const rotationValues = useRef<{[key: string]: Animated.Value}>({});
+
+  useEffect(() => {
+    return () => {
+      // Cleanup animations or layout state
+      setIsModalOpen('');
+      setOpenSections(['General']);
+    };
+  }, []);
 
   const toggleSection = (sectionTitle: string) => {
     // Trigger the layout animation
@@ -236,7 +231,7 @@ const SettingScreen = (props: Props) => {
                 {'david01@gmail.com'}
               </Text>
             </View>
-            <Pressable
+            {/* <Pressable
               style={styles.editProfileBtn}
               onPress={() => {
                 setIsModalOpen('profile');
@@ -245,7 +240,7 @@ const SettingScreen = (props: Props) => {
                 source={images.ic_edit}
                 style={[styles.editImage, {tintColor: colors.icons}]}
               />
-            </Pressable>
+            </Pressable> */}
           </Pressable>
         );
       case 'Orders':
@@ -256,14 +251,14 @@ const SettingScreen = (props: Props) => {
               {backgroundColor: colors.darktertiary1},
             ]}
             onPress={() => {
-              navigation.navigate('PastOrderList');
+              navigation.navigate('Orders');
             }}>
             <Image
               source={images[item.icon]}
               style={[styles.generalImageSty, {tintColor: colors.icons}]}
             />
             <Text style={[textStyle(16, 'Roboto'), {color: colors.text}]}>
-              {localize('signout')}
+              {'Past orders'}
             </Text>
           </Pressable>
         );

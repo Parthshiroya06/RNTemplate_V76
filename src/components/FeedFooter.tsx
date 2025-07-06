@@ -6,14 +6,15 @@ import {localize} from '@languages';
 import {useTheme} from '@react-navigation/native';
 
 const FeedFooter = ({data, onPress}) => {
-  const {title, price} = data;
+  const {name, price} = data;
+  console.log('dsfsdf', data);
   const followerCount = Math.floor(Math.random() * 20) + 1;
   const colors = useTheme().colors;
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
         <Text style={[textStyle(18, 'Roboto200', 'center'), {color: 'white'}]}>
-          {title}
+          {name}
         </Text>
       </View>
       <Pressable
@@ -37,7 +38,7 @@ const FeedFooter = ({data, onPress}) => {
               textStyle(18, 'Roboto', 'center'),
               {color: colors.offWhite},
             ]}>
-            {price}
+            {`$${price}`}
           </Text>
         </View>
       </Pressable>

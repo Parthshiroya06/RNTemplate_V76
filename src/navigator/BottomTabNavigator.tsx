@@ -88,7 +88,7 @@ const BottomTabNavigator = () => {
                 source={images[icon]}
                 style={[
                   {
-                    tintColor: focused ? colors.DarkSlateBlue : colors.icons,
+                    tintColor: focused ? '#f56f07' : colors.icons,
                   },
                   styles.imageStyle,
                 ]}
@@ -103,7 +103,7 @@ const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: colors.DarkSlateBlue,
+        tabBarActiveTintColor: '#f56f07',
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
           height: responsiveHeight(isIpad() ? 5 : 6.5),

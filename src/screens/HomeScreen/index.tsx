@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 
 import {
   Animated,
@@ -11,7 +11,7 @@ import {
   View,
 } from 'react-native';
 import {styles} from './style';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {IRootReduxState} from '@types';
 import {useTheme} from '@react-navigation/native';
 import Video from 'react-native-video';
@@ -24,6 +24,7 @@ import {
 import {localize} from '@languages';
 import {images} from '@assets';
 import {responsiveWidth, textStyle} from '@resources';
+import {performGetRequest} from '@actions';
 
 type Props = {};
 
@@ -36,9 +37,25 @@ const HomeScreen = (props: Props) => {
   const [isItemSelected, setItemSelected] = useState<boolean>(false);
   const [isItemStore, setItemStore] = useState<any>([]);
   const [isSetItemName, setItemName] = useState<any>('');
+
+  const [foodList, setFoodList] = useState<any>([]);
+  const [customFoodOption, setCustomFoodOption] = useState<any>([]);
   const [isCount, setCount] = useState<any>(1);
   const refFlatList = useRef(null);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getFoodDataList();
+  }, []);
 
+  const getFoodDataList = async () => {
+    try {
+      const response = await dispatch(performGetRequest('general/product'));
+
+      setFoodList(response.data);
+    } catch (error) {
+      console.log('someting want worng', error);
+    }
+  };
   const viewabilityConfig = useRef({
     viewAreaCoveragePercentThreshold: 80,
   });
@@ -70,36 +87,34 @@ const HomeScreen = (props: Props) => {
     [],
   );
 
-  const renderItem = useCallback(
-    ({item, index}) => {
-      const {index: scrollIndex} = scrollInfo;
+  const renderItem = ({item, index}) => {
+    console.log('check item list>>>>>', item);
+    const {index: scrollIndex} = scrollInfo;
 
-      const isNext = Math.abs(index - scrollIndex) <= 1;
+    // const isNext = Math.abs(index - scrollIndex) <= 1;
 
-      let foodName = [
-        {title: 'Stuff MeatBell', price: '$100', count: 1},
-        {title: 'Ricotta agnolotti', price: '$50', count: 1},
-        {title: 'Fusilli Giganti', price: '$90', count: 1},
-      ];
-      return (
-        <View style={{height}}>
-          <VideoComponent
-            data={item}
-            isNext={isNext}
-            isVisible={scrollIndex === index}
-          />
-          <FeedFooter
-            data={foodName[index]}
-            onPress={() => {
-              setItemName(foodName[index]);
-              setIsModalOpen(true);
-            }}
-          />
-        </View>
-      );
-    },
-    [scrollInfo, height],
-  );
+    let foodName = [
+      {title: 'Stuff MeatBell', price: '$100', count: 1},
+      {title: 'Ricotta agnolotti', price: '$50', count: 1},
+      {title: 'Fusilli Giganti', price: '$90', count: 1},
+      {title: 'Fusilli Giganti', price: '$90', count: 1},
+      {title: 'Fusilli Giganti', price: '$90', count: 1},
+    ];
+    return (
+      <View style={{height}}>
+        <VideoComponent data={item} isVisible={scrollIndex === index} />
+        <FeedFooter
+          data={item}
+          onPress={() => {
+            setCustomFoodOption(item.ingredients_option);
+            setItemName(item);
+            setIsModalOpen(true);
+          }}
+        />
+      </View>
+    );
+  };
+
   const _renderCommonModel = () => {
     return (
       <CommonModal onClose={() => {}} isVisible={isModalOpen}>
@@ -122,7 +137,7 @@ const HomeScreen = (props: Props) => {
                 textStyle(20, 'Roboto400', 'left'),
                 {fontWeight: 'bold'},
               ]}>
-              {isSetItemName?.title}
+              {isSetItemName?.name}
             </Text>
 
             <View style={styles.spacialReqView}>
@@ -131,17 +146,14 @@ const HomeScreen = (props: Props) => {
               </Text>
               <Text
                 style={[textStyle(12, 'Roboto400', 'left'), {color: 'gray'}]}>
-                {'Option: choose up to 2'}
+                {'Option: choose item'}
               </Text>
             </View>
             <View style={{marginLeft: 20}}>
-              {[
-                {id: 1, names: 'No Minced  Pock'},
-                {id: 2, names: 'Sauce on the side'},
-              ].map((item, inde) => {
+              {customFoodOption.map((item, index) => {
                 return (
                   <View
-                    key={item.names}
+                    key={index}
                     style={{
                       flexDirection: 'row',
                       marginTop: 10,
@@ -153,12 +165,12 @@ const HomeScreen = (props: Props) => {
                         setItemSelected(!isItemSelected);
 
                         const exists = isItemStore.some(
-                          _item => _item.id === item.id,
+                          _item => _item === item,
                         );
 
                         if (exists) {
                           const updated = isItemStore.filter(
-                            _item => _item.id !== item.id,
+                            _item => _item !== item,
                           );
                           console.log('Removed:', updated);
                           setItemStore(updated);
@@ -171,7 +183,7 @@ const HomeScreen = (props: Props) => {
                       }}>
                       <Image
                         source={
-                          isItemStore.some((_item: any) => _item?.id == item.id)
+                          isItemStore.some((_item: any) => _item == item)
                             ? images.ic_fillLine
                             : images.ic_outLine
                         }
@@ -179,7 +191,7 @@ const HomeScreen = (props: Props) => {
                       />
                     </Pressable>
                     <Text style={[textStyle(15, 'Roboto400', 'left')]}>
-                      {item.names}
+                      {item}
                     </Text>
                   </View>
                 );
@@ -218,7 +230,7 @@ const HomeScreen = (props: Props) => {
           <CommonButton
             onPress={() => {
               setIsModalOpen(!isModalOpen);
-              console.log('Sdfsdfsdf>>>', isSetItemName);
+
               isSetItemName.count = isCount;
               setItemName(isSetItemName);
               props.navigation.navigate('CartScreen', {
@@ -239,23 +251,7 @@ const HomeScreen = (props: Props) => {
       <StatusBar barStyle="light-content" backgroundColor="black" />
       <Animated.FlatList
         ref={refFlatList}
-        data={[
-          {
-            id: '1',
-            video:
-              'https://videos.pexels.com/video-files/1111421/1111421-hd_1920_1080_30fps.mp4',
-          },
-          {
-            id: '2',
-            video:
-              'https://videos.pexels.com/video-files/3195728/3195728-uhd_2560_1440_25fps.mp4',
-          },
-          {
-            id: '3',
-            video:
-              'https://media.istockphoto.com/id/2193520234/video/the-special-ice-cream-spoon-is-scooping-a-delicious-fresh-strawberry-ice-cream.mp4?s=mp4-640x640-is&k=20&c=bCEjry_DyjQT7rb2PJpTvaMnblyJ6pLnQjOZH1QTces=',
-          },
-        ]}
+        data={foodList}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         pagingEnabled

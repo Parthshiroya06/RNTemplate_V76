@@ -8,12 +8,7 @@ export const performGetRequest = (endpoint: string) => {
 
       const response = await wrapper.get(endpoint);
 
-      //-->If you want to go with graphql then use below query with params
-
-      //   const response = await wrapper.post(endpoint, {
-      //     query,
-      //     params,
-      //   });
+      console.log('check response >>>>', response.data);
       return response.data;
     } catch (error: any) {
       console.log('check error is >>>', error);

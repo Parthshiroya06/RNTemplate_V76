@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {CartScreen, WebViewScreen} from '@screen';
+import {CartScreen, Orders, WebViewScreen} from '@screen';
 import {RootStackParamList} from '@types';
 
 const AppStack = createNativeStackNavigator<RootStackParamList>();
@@ -18,16 +18,16 @@ const AppStackNavigator = () => {
           };
         }}
       />
-      {/* <AppStack.Screen
-        name="CartScreen"
-        component={CartScreen}
+      <AppStack.Screen
+        name="Orders"
+        component={Orders}
         options={({route}) => {
           return {
-            headerTitle: 'Cart',
+            headerTitle: 'Past Orders',
             headerShown: true,
           };
         }}
-      /> */}
+      />
     </AppStack.Group>
   );
 };
