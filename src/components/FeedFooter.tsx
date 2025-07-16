@@ -51,7 +51,7 @@ export {FeedFooter};
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: responsiveHeight(20),
+    bottom: responsiveHeight(10),
     marginLeft: 20,
   },
   profileContainer: {

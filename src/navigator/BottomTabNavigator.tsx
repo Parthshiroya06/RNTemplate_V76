@@ -6,6 +6,7 @@ import {
   Dimensions,
   Easing,
   Image,
+  Platform,
   StyleSheet,
   useColorScheme,
 } from 'react-native';
@@ -19,7 +20,7 @@ import {
 import {isIpad} from '@utils';
 import {useTheme} from '@react-navigation/native';
 import {localize} from '@languages';
-
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 const BottomTab = createBottomTabNavigator<BottomTabBarParamList>();
 
 // const AddScreen = ({
@@ -76,12 +77,6 @@ const BottomTabNavigator = () => {
         name={name}
         component={screens[name]}
         options={{
-          tabBarLabel: label,
-          headerTitle: localize(name),
-          tabBarLabelPosition: isIpad() ? 'beside-icon' : 'below-icon',
-          tabBarPosition: 'bottom',
-
-          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({focused}) => {
             return (
               <Image
@@ -103,9 +98,16 @@ const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator
       screenOptions={{
+        headerShown: false,
         tabBarActiveTintColor: '#f56f07',
+        tabBarShowLabel: false,
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
+          position: 'absolute',
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          borderTopWidth: 0,
+          elevation: 0,
+          // paddingBottom: Platform.OS === 'android' ? 0 : 0,
           height: responsiveHeight(isIpad() ? 5 : 6.5),
         },
       }}>
@@ -119,9 +121,10 @@ export {BottomTabNavigator};
 
 const styles = StyleSheet.create({
   imageStyle: {
-    width: responsiveWidth(5),
-    height: responsiveHeight(5),
+    width: responsiveWidth(6),
+    height: responsiveHeight(6),
     resizeMode: 'contain',
+    paddingBottom: 30,
     margin: 30,
   },
 });

@@ -10,6 +10,14 @@ export const images = {
   minus: require('./icons/minus.png'),
   plus: require('./icons/plus.png'),
   ic_box: require('./icons/ic_box.png'),
+  ic_Like: require('./icons/ic_Like.png'),
+  ic_save_fill: require('./icons/ic_save_fill.png'),
+  ic_save_outlook: require('./icons/ic_save_outlook.png'),
+  ic_unLike: require('./icons/ic_unLike.png'),
+  ic_mute: require('./icons/ic_mute.png'),
+
+  ic_unmute: require('./icons/ic_unmute.png'),
+
   // tab icons screen icons
   ic_home: require('./tabIcon/ic_home.png'),
   ic_setting: require('./tabIcon/ic_setting.png'),

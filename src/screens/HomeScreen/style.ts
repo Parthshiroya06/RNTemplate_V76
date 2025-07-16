@@ -73,12 +73,12 @@ const styles = StyleSheet.create({
   indicatorRow: {
     flexDirection: 'row',
     position: 'absolute',
-    top: 10,
+    top: 60,
     alignSelf: 'center',
     zIndex: 10,
   },
   dot: {
-    width: 35,
+    flex: 1,
     height: 8,
     borderRadius: 4,
     marginHorizontal: 4,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   activeDot: {
     backgroundColor: '#fff',
-    width: 35,
+    flex: 1,
     height: 8,
   },
 
@@ -97,6 +97,33 @@ const styles = StyleSheet.create({
   videoWrapper: {
     width: responsiveWidth(100),
     height: '100%',
+  },
+  videoBase: {
+    backgroundColor: 'black',
+    width: '100%',
+  },
+  leftControls: {
+    position: 'absolute',
+    width: responsiveWidth(15),
+    right: 10,
+    bottom: 180,
+
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  controlButton: {
+    marginBottom: 25,
+    alignItems: 'center',
+  },
+  icon: {
+    width: 28,
+    height: 28,
+    tintColor: 'white',
+  },
+  iconLabel: {
+    color: 'white',
+    fontSize: 12,
+    marginTop: 5,
   },
 });
 
